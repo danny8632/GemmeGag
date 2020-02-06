@@ -1,5 +1,5 @@
 <p align="center">
-  <h3 align="center">GemmeGag</h3>
+  <h1 align="center">GemmeGag</h1>
 
   <p align="center">GemmeGag is a social media platform for viewing and sharing memes</p>
 </p>
@@ -73,7 +73,7 @@ git pull
 
 ## Usage
 
-If everything is install probably as shown in the [installation guide](#installation) you should be able to run:
+If everything is installed probably as shown in the [installation guide](#installation) you should be able to run:
 ```sh
 docker-compose up -d
 ```
