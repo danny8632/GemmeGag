@@ -83,3 +83,14 @@ To turn of the docker env, run:
 docker-compose down
 ```
 
+## Troubleshooting
+
+1. If you have problem with running docker-compose you may need to build it first, by running:
+```sh
+docker-compose build
+```
+
+2. If you have trouble with importing the data-base through phpMyAdmin you can try this command:
+```sh
+docker exec -i gemmegag_db_1 sh -c 'exec mysql -uroot -p"ROOT-Password"' < /path/to/sql/file
+```
