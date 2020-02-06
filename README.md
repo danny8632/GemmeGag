@@ -9,7 +9,8 @@
 * [About the Project](#about-the-project)
 * [Features](#features)
 * [Technologies](#technologies)
-
+* [Installation](#installation)
+    * [Usage](#usage)
 
 
 ## About The Project
@@ -52,3 +53,33 @@ We are using these technologies:
 - [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [MySQL/MariaDB](https://www.mysql.com)
 - [Docker](https://www.docker.com)
+
+
+## Installation
+
+1. Be sure that [Docker](https://www.docker.com) and [Docker-Compose](https://docs.docker.com/compose) are installed.
+2. Clone the repo
+```sh
+git clone https://github.com/danny8632/GemmeGag.git
+```
+3. Checkout the "docker" branch
+```sh
+git checkout docker
+```
+4. Pull from git
+```sh
+git pull
+```
+
+## Usage
+
+If everything is install probably as shown in the [installation guide](#installation) you should be able to run:
+```sh
+docker-compose up -d
+```
+
+To turn of the docker env, run:
+```sh
+docker-compose down
+```
+
