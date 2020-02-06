@@ -1,5 +1,10 @@
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
 <p align="center">
-  <h3 align="center">GemmeGag</h3>
+  <h1 align="center">GemmeGag</h1>
 
   <p align="center">GemmeGag is a social media platform for viewing and sharing memes</p>
 </p>
@@ -9,7 +14,9 @@
 * [About the Project](#about-the-project)
 * [Features](#features)
 * [Technologies](#technologies)
-
+* [Installation](#installation)
+    * [Usage](#usage)
+* [Troubleshooting](#Troubleshooting)
 
 
 ## About The Project
@@ -52,3 +59,62 @@ We are using these technologies:
 - [CSS](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [MySQL/MariaDB](https://www.mysql.com)
 - [Docker](https://www.docker.com)
+
+
+## Installation
+
+1. Be sure that [Docker](https://www.docker.com) and [Docker-Compose](https://docs.docker.com/compose) are installed.
+2. Clone the repo
+```sh
+git clone https://github.com/danny8632/GemmeGag.git
+```
+3. Checkout the "docker" branch
+```sh
+git checkout docker
+```
+4. Pull from git
+```sh
+git pull
+```
+
+## Usage
+
+If everything is installed probably as shown in the [installation guide](#installation) you should be able to run:
+```sh
+docker-compose up -d
+```
+
+To turn of the docker env, run:
+```sh
+docker-compose down
+```
+
+## Troubleshooting
+
+1. If you have problem with running docker-compose you may need to build it first, by running:
+```sh
+docker-compose build
+```
+
+2. If you have trouble with importing the data-base through phpMyAdmin you can try this command:
+```sh
+docker exec -i gemmegag_db_1 sh -c 'exec mysql -uroot -p"ROOT-Password"' < /path/to/sql/file
+```
+
+
+
+
+
+[contributors-shield]:
+https://img.shields.io/github/contributors/danny8632/GemmeGag.svg?style=flat-square
+[contributors-url]: https://github.com/danny8632/GemmeGag/graphs/contributors
+[forks-shield]:
+https://img.shields.io/github/forks/danny8632/GemmeGag.svg?style=flat-square
+[forks-url]: https://github.com/danny8632/GemmeGag/network/members
+[stars-shield]:
+https://img.shields.io/github/stars/danny8632/GemmeGag.svg?style=flat-square
+[stars-url]: https://github.com/danny8632/GemmeGag/stargazers
+[issues-shield]:
+https://img.shields.io/github/issues/danny8632/GemmeGag.svg?style=flat-square
+[issues-url]: https://github.com/danny8632/GemmeGag/issues
+
