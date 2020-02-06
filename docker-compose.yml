@@ -7,6 +7,7 @@ services:
         volumes:
             - ./www:/var/www/html/
             - ./conf/conf.d:/usr/local/etc/php/conf.d/
+            - ./conf/sites-enabled:/etc/apache2/sites-enabled
         links:
             - db:db
         networks:
