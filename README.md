@@ -100,3 +100,21 @@ docker-compose build
 ```sh
 docker exec -i gemmegag_db_1 sh -c 'exec mysql -uroot -p"ROOT-Password"' < /path/to/sql/file
 ```
+
+
+
+
+
+[contributors-shield]:
+https://img.shields.io/github/contributors/danny8632/GemmeGag.svg?style=flat-square
+[contributors-url]: https://github.com/danny8632/GemmeGag/graphs/contributors
+[forks-shield]:
+https://img.shields.io/github/forks/danny8632/GemmeGag.svg?style=flat-square
+[forks-url]: https://github.com/danny8632/GemmeGag/network/members
+[stars-shield]:
+https://img.shields.io/github/stars/danny8632/GemmeGag.svg?style=flat-square
+[stars-url]: https://github.com/danny8632/GemmeGag/stargazers
+[issues-shield]:
+https://img.shields.io/github/issues/danny8632/GemmeGag.svg?style=flat-square
+[issues-url]: https://github.com/danny8632/GemmeGag/issues
+
