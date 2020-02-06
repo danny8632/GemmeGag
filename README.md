@@ -11,6 +11,7 @@
 * [Technologies](#technologies)
 * [Installation](#installation)
     * [Usage](#usage)
+* [Troubleshooting](#Troubleshooting)
 
 
 ## About The Project
