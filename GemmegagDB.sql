@@ -97,6 +97,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `username` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
+CREATE VIEW trending_posts AS
+SELECT posts.id, posts.title, posts.created, (SELECT COUNT(postvotes.postID) FROM postvotes WHERE posts.id = postvotes.postID AND postvotes.vote = 'Upvote') AS 'Total' FROM posts
+WHERE TIMESTAMPDIFF(HOUR, posts.created, CURRENT_TIMESTAMP) < 2
+
+
 -- Data exporting was unselected.
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
