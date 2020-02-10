@@ -1,15 +1,49 @@
 /* HTML RESET */
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6 {
-    padding: 0;
-    margin: 0;
-    border: 0;
-    outline: 0;
-    font-size: 100%;
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
 }
 
-.content {
+body {
+    height: 100vh;
     background-color: black;
+}
+.content {
+    padding-left: 5%;
+    padding-right: 5%;
 }
 p {
     color: white;
+}
+.header {
+    display: inline-flex;
+    width: 100%;
+}
+.logo {
+    width: -moz-fit-content;
+}
+.search {
+    width: -moz-fit-content;
+}
+.login {
+    width: -moz-fit-content;
+}
+.logo, .search, .login {
+    margin: auto;
 }
