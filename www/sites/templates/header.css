@@ -54,6 +54,9 @@ body {
 .logotext {
     width: -moz-fit-content;
     margin: auto;
+    display: block;
+    text-decoration-line: none;
+    color: white;
 }
 .search form {
     width: -moz-fit-content;

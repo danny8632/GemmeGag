@@ -68,6 +68,14 @@ else
             new Login();
     
             break;
+
+        case 'signup':
+
+            require __DIR__ . '/sites/signup/index.php';
+    
+            new Signup();
+    
+            break;
     
         default:
     

@@ -24,7 +24,7 @@
     <body>
         <div class="header">
             <div class="logo">
-                <p class="logotext">GemGag</p>
+                <a class="logotext" href="/home" >GemGag</a>
             </div>
             <div class="search">
                 <form>
