@@ -76,6 +76,12 @@ else
             new Signup();
     
             break;
+
+        case 'info':
+
+            phpinfo();
+
+            break;
     
         default:
     
