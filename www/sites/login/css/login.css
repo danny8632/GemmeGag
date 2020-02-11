@@ -1,0 +1,9 @@
+.content {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.loginForm {
+    margin: 3%;
+    width: -moz-fit-content;
+    margin: auto;
+}

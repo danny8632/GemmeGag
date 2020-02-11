@@ -32,6 +32,6 @@
                 </form>
             </div>
             <div class="login">
-                <a href="#" class="loginButton">Login</a>
+                <a href="/login" class="loginButton">Login</a>
             </div>
         </div>

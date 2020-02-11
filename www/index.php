@@ -32,6 +32,13 @@ switch ($redirect) {
 
         break;
 
+    case '/login':
+
+        require __DIR__ . '/sites/login/index.php';
+
+        new Login();
+
+        break;
     default:
 
         require __DIR__ . '/404.php';
