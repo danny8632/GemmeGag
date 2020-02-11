@@ -1,19 +1,27 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 //$redirect = $_SERVER['REQUEST_URI']; // You can also use $_SERVER['REDIRECT_URL'];
 $redirect = explode('?',$_SERVER['REQUEST_URI']); // You can also use $_SERVER['REDIRECT_URL'];
+
 
 $redirect_exploded = explode("/", $redirect[0]);
 
 
-if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api")
+if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api_v1")
 {
-
     switch ($redirect_exploded[2]) {
-        case 'test':
-            print_r($_REQUEST);
-            print_r($_SERVER['REQUEST_METHOD']);
+
+        case 'example':
+
+            require __DIR__ . '/api/example/index.php';
+            
+            new Example();
             break;
+
         
         default:
             echo "Api call dosen't exist";
@@ -27,6 +35,8 @@ else
     switch ($redirect_exploded[1]) {
     
         case ''   :
+
+        case 'home' :
     
             require __DIR__ . '/sites/home/index.php';
     
