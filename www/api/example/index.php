@@ -9,27 +9,16 @@ class Example extends Api {
     function __construct() {
 
         parent::__construct();
+    
+        $this->conn = $this->getDbConn();
 
-        echo '<pre>';
-        print_r($this->getRequest());
-        echo '</pre>';
+        $stmt = $this->conn->prepare("SELECT * FROM posts");
+        $stmt->execute();
 
-        
-        $servername = "db";
-        $username = "root";
-        $password = "root";
-        
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=myDB", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
-            }
-        catch(PDOException $e)
-            {
-            echo "Connection failed: " . $e->getMessage();
-            }
-        
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        foreach($stmt->fetchAll() as $k=>$v) {
+            print_r($v);
+        }
 
     }
 
