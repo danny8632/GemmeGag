@@ -11,6 +11,8 @@ switch ($redirect) {
 
         require __DIR__ . '/Sites/Home/index.php';
 
+        new Home();
+
         break;
 
 

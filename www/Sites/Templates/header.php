@@ -7,18 +7,30 @@
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<?php
+        <?php
 
-    foreach ($this->includeArr as $type => $val) {
-        if($type == 'css')
-            echo '<link rel="stylesheet" type="text/css" href="'.$val[0].'">';
-        else if($type == 'js')
-            echo '<script type="text/javascript" src="'.$val[0].'"></script>';
-    }
-?>
+            foreach ($this->includeArr as $type => $val) {
+                if($type == 'css')
+                    echo '<link rel="stylesheet" type="text/css" href="'.$val[0].'">';
+                else if($type == 'js')
+                    echo '<script type="text/javascript" src="'.$val[0].'"></script>';
+            }
+        ?>
 
         <title>GemmeGag</title>
     </head>
+    
     <body>
-
-
+        <div class="header">
+            <div class="logo">
+                <p class="logotext">GemGag</p>
+            </div>
+            <div class="search">
+                <form>
+                    <input placeholder="Søg..." type="text">
+                </form>
+            </div>
+            <div class="login">
+                <a href="#" class="loginButton">Login</a>
+            </div>
+        </div>
