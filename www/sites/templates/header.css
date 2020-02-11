@@ -35,19 +35,14 @@ body {
     margin-bottom: 1%;
     border-bottom: solid 1px #262626;
 }
-.logo {
-    width: -moz-fit-content;
-}
-.search {
-    width: -moz-fit-content;
-}
-.login {
-    width: -moz-fit-content;
-}
 .logo, .search, .login {
+    width: 30%;
     margin: auto;
 }
 .loginButton {
+    width: -moz-fit-content;
+    margin: auto;
+    display: block;
     text-decoration-line: none;
     color: white;
     background-color: #666666;
@@ -55,4 +50,12 @@ body {
 }
 .loginButton:hover {
     background-color: #808080;
+}
+.logotext {
+    width: -moz-fit-content;
+    margin: auto;
+}
+.search form {
+    width: -moz-fit-content;
+    margin: auto;
 }
