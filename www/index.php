@@ -24,6 +24,14 @@ switch ($redirect) {
 
         break;
 
+    case '/upload':
+
+        require __DIR__ . '/Sites/upload/index.php';
+
+        new Upload();
+
+        break;
+
     default:
 
         require __DIR__ . '/404.php';
