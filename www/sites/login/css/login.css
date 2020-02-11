@@ -8,3 +8,20 @@
     margin-top: 3%;
     width: -moz-fit-content;
 }
+.signupCon {
+    display: grid;
+    margin: auto;
+    margin-top: 3%;
+    width: -moz-fit-content;
+}
+.signupCon p, .signupButton {
+    width: -moz-fit-content;
+    margin: auto;
+}
+.signupButton {
+    text-decoration-line: none;
+    color: white;
+    background-color: #666666;
+    padding: 8px;
+    border-radius: 10px;
+}
