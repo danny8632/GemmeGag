@@ -1,8 +1,8 @@
 <?php
-    $servername = "localhost";
+    $servername = "10.0.2.15";
     $username = "root";
     $password = "root";
-    $db = "gemmagag"
+    $db = "gemmegag";
     // Create connection
     $conn = new mysqli($servername, $username, $password, $db);
 
