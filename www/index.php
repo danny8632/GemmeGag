@@ -1,15 +1,32 @@
 <?php
 
-//$request = $_SERVER['REQUEST_URI'];
-echo "<pre>";
-print_r(explode('/', ltrim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/')));
-echo "</pre>";
+$redirect = $_SERVER['REQUEST_URI']; // You can also use $_SERVER['REDIRECT_URL'];
 
 
-echo "<pre>";
-print_r($_SERVER);
-echo "</pre>";
+switch ($redirect) {
+
+    case '/'  :
+
+    case ''   :
+
+        require __DIR__ . '/Sites/Home/index.php';
+
+        break;
 
 
-//var_dump($request);
-?>
+    case '/examble' :
+
+        require __DIR__ . '/Sites/siteexamble/index.php';
+
+        new Examble();
+
+        break;
+
+    default:
+
+        require __DIR__ . '/404.php';
+
+        break;
+
+}
+
