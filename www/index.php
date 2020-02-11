@@ -83,6 +83,13 @@ else
 
             break;
     
+        case 'post' :
+
+            require __DIR__ . '/sites/post/index.php';
+    
+            new Post();
+    
+            break;
         default:
     
             require __DIR__ . '/404.php';
