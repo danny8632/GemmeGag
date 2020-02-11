@@ -1,14 +1,23 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="CSS/Home.css">
-    </head>
-    <body>
-        <?php
-            include("../Templates/Header.html");
-        ?>
-        <div class="content">
-            <p>Hello world</p>
-        </div>
-    </body>
-</html>
+
+
+<?php
+
+require __DIR__ . '/../sites.php';
+
+class Home Extends Sites {
+
+    public $includeFiles = array(
+        "css" => array(
+            "http://localhost:8001/Sites/Home/CSS/Home.css"
+        ),
+        "html" => array(
+            "Home/html/Home.html"
+        )
+    );
+
+    function __construct() {
+
+        parent::__construct($this->includeFiles);
+    }
+
+}
