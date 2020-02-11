@@ -8,7 +8,7 @@ class Home Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "http://localhost:8001/sites/home/css/home.css"
+            "/sites/home/css/home.css"
         ),
         "html" => array(
             "home/html/home.html"

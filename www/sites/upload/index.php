@@ -6,10 +6,10 @@ class Upload Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "http://localhost:8001/sites/upload/css/main.css"
+            "/sites/upload/css/main.css"
         ),
         "js" => array(
-            "http://localhost:8001/sites/upload/js/main.js"
+            "/sites/upload/js/main.js"
         ),
         "html" => array(
             "upload/html/upload.html"

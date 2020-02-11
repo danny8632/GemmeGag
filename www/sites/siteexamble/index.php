@@ -6,10 +6,10 @@ class Examble Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "http://localhost:8001/sites/siteexamble/css/main.css"
+            "/sites/siteexamble/css/main.css"
         ),
         "js" => array(
-            "http://localhost:8001/sites/siteexamble/js/main.js"
+            "/sites/siteexamble/js/main.js"
         ),
         "html" => array(
             "siteexamble/html/front.html"
