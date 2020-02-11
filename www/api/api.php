@@ -14,13 +14,36 @@ class Api extends DB {
         {
             $this->req[1] = $_REQUEST;
 
-            if(!empty($_REQUEST['method']))
+            if(isset($_REQUEST['method']) && !empty($_REQUEST['method']))
             {
                 if(method_exists($this, $_REQUEST['method']))
                 {
                     $method = $_REQUEST['method'];
                     $this->$method();
                 }
+            }
+            else if($this->req[0] == "get" || $this->req[0] == "GET")
+            {
+                if(method_exists($this, '_GET'))
+                    $this->_GET();
+            }
+            else if($this->req[0] == "post" || $this->req[0] == "POST")
+            {
+                if(method_exists($this, '_POST'))
+                    $this->_POST();
+            }
+        }
+        else
+        {
+            if($this->req[0] == "get" || $this->req[0] == "GET")
+            {
+                if(method_exists($this, '_GET'))
+                    $this->_GET();
+            }
+            else if($this->req[0] == "post" || $this->req[0] == "POST")
+            {
+                if(method_exists($this, '_POST'))
+                    $this->_POST();
             }
         }
 

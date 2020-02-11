@@ -9,17 +9,34 @@ class Example extends Api {
     function __construct() {
 
         parent::__construct();
-    
-        $this->conn = $this->getDbConn();
 
+    }
+
+    function _GET() 
+    {
+        $this->conn = $this->getDbConn();
         $stmt = $this->conn->prepare("SELECT * FROM posts");
         $stmt->execute();
 
         $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-        foreach($stmt->fetchAll() as $k=>$v) {
-            print_r($v);
-        }
 
+
+        echo json_encode($stmt->fetchAll());
+
+    }
+
+
+    function getPost()
+    {
+        $this->conn = $this->getDbConn();
+        $stmt = $this->conn->prepare("SELECT * FROM posts");
+        $stmt->execute();
+
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+
+        echo json_encode($stmt->fetchAll());
+        
     }
 
 
