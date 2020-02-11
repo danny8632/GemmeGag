@@ -31,12 +31,12 @@ class Api extends DB {
         return $this->req;
     }
 
-    /* public function getDbConn()
+    public function getDbConn()
     {
         $db = DB::getInstance();
-        $conn = $db->getConnection();
+        return $db->getConnection();
         
-    } */
+    }
 
 }
 
