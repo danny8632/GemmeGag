@@ -6,7 +6,7 @@ class Signup Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "http://localhost:8001/sites/signup/css/signup.css"
+            "/sites/signup/css/signup.css"
         ),
         "html" => array(
             "signup/html/signup.html"

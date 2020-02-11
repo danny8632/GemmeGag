@@ -6,7 +6,7 @@ class Login Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "http://localhost:8001/sites/login/css/login.css"
+            "/sites/login/css/login.css"
         ),
         "html" => array(
             "login/html/login.html"

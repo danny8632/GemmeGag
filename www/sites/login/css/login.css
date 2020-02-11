@@ -7,15 +7,18 @@
     margin: auto;
     margin-top: 3%;
     width: -moz-fit-content;
+    width: fit-content;
 }
 .signupCon {
     display: grid;
     margin: auto;
     margin-top: 3%;
     width: -moz-fit-content;
+    width: fit-content;
 }
 .signupCon p, .signupButton {
     width: -moz-fit-content;
+    width: fit-content;
     margin: auto;
 }
 .signupButton {

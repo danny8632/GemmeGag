@@ -41,6 +41,7 @@ body {
 }
 .loginButton {
     width: -moz-fit-content;
+    width: fit-content;
     margin: auto;
     display: block;
     text-decoration-line: none;
@@ -53,6 +54,7 @@ body {
 }
 .logotext {
     width: -moz-fit-content;
+    width: fit-content;
     margin: auto;
     display: block;
     text-decoration-line: none;
@@ -60,5 +62,6 @@ body {
 }
 .search form {
     width: -moz-fit-content;
+    width: fit-content;
     margin: auto;
 }

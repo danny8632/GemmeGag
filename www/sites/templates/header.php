@@ -28,7 +28,7 @@
             </div>
             <div class="search">
                 <form>
-                    <input placeholder="Søg..." type="text">
+                    <input placeholder="Search..." type="text">
                 </form>
             </div>
             <div class="login">
