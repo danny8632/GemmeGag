@@ -9,7 +9,7 @@ switch ($redirect) {
 
     case ''   :
 
-        require __DIR__ . '/Sites/Home/index.php';
+        require __DIR__ . '/sites/home/index.php';
 
         new Home();
 
@@ -18,7 +18,7 @@ switch ($redirect) {
 
     case '/examble' :
 
-        require __DIR__ . '/Sites/siteexamble/index.php';
+        require __DIR__ . '/sites/siteexamble/index.php';
 
         new Examble();
 
@@ -26,7 +26,7 @@ switch ($redirect) {
 
     case '/upload':
 
-        require __DIR__ . '/Sites/upload/index.php';
+        require __DIR__ . '/sites/upload/index.php';
 
         new Upload();
 

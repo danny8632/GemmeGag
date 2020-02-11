@@ -8,9 +8,8 @@ class Sites {
     function __construct($arr) {
         $this->includeArr = $arr;
 
-        require __DIR__."/Templates/header.php";
+        require __DIR__."/templates/header.php";
 
-      
 
         if(!empty($arr['html']))
         {

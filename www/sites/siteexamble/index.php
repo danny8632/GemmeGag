@@ -1,17 +1,18 @@
-
-
 <?php
 
 require __DIR__ . '/../sites.php';
 
-class Home Extends Sites {
+class Examble Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "http://localhost:8001/Sites/Home/CSS/Home.css"
+            "http://localhost:8001/sites/siteexamble/css/main.css"
+        ),
+        "js" => array(
+            "http://localhost:8001/sites/siteexamble/js/main.js"
         ),
         "html" => array(
-            "Home/html/Home.html"
+            "siteexamble/html/front.html"
         )
     );
 

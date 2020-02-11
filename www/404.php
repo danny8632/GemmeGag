@@ -1,3 +1,3 @@
 <?php
 
-echo "Sites dosen't exists";
+echo "Site dosen't exist!";
