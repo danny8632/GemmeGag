@@ -1,4 +1,6 @@
 <?php
+    include 'conf.php';
+
     $target_dir = "../../Sites/Upload/images/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -39,6 +41,12 @@
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+            $sql = "INSERT INTO posts (title, description, file, userID) VALUES ('Dette er en titel', 'Dette er en beskrivelse', '" . $target_file . "', 1)";
+            if ($conn->query($sql) === TRUE) {
+                echo "Record created";
+            } else {
+                echo "WONG";
+            }
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
