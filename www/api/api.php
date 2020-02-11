@@ -2,7 +2,7 @@
 
 require __DIR__. "/../includes/db.php";
 
-class Api {
+class Api extends DB {
 
     private $req;
 
@@ -29,6 +29,13 @@ class Api {
     public function getRequest()
     {
         return $this->req;
+    }
+
+    public function getDbConn()
+    {
+        $db = DB::getInstance();
+        $conn = $db->getConnection();
+        
     }
 
 }

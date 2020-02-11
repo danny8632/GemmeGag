@@ -9,11 +9,12 @@ services:
             - ./conf/conf.d:/usr/local/etc/php/conf.d/
             - ./conf/sites-enabled:/etc/apache2/sites-enabled
         links:
-            - db:db
+            - db
         networks:
             - default
     db: # This service *must* be called 'db'
         image: mariadb:latest
+        container_name: 'db'
         ports: 
             - 3306:3306
         command: --default-authentication-plugin=mysql_native_password

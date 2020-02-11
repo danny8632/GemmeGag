@@ -1,5 +1,5 @@
 <?php
-    $servername = "10.0.2.15";
+    $servername = "db";
     $username = "root";
     $password = "root";
     $db = "gemmegag";
