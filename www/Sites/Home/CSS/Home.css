@@ -22,11 +22,12 @@ time, mark, audio, video {
 
 body {
     height: 100vh;
-    background-color: black;
+    background-color: #404040;
 }
 .content {
-    padding-left: 5%;
-    padding-right: 5%;
+    margin-top: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 p {
     color: white;
@@ -34,6 +35,9 @@ p {
 .header {
     display: inline-flex;
     width: 100%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    border-bottom: solid 1px #262626;
 }
 .logo {
     width: -moz-fit-content;
@@ -46,4 +50,13 @@ p {
 }
 .logo, .search, .login {
     margin: auto;
+}
+.loginButton {
+    text-decoration-line: none;
+    color: white;
+    background-color: #666666;
+    padding: 8px;
+}
+.loginButton:hover {
+    background-color: #808080;
 }
