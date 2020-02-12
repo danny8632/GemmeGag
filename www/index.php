@@ -22,6 +22,14 @@ if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api_v1")
             new Example();
             break;
 
+        case 'user':
+            
+            require __DIR__ . '/api/user/index.php';
+
+            new User();
+
+            break;
+
         
         default:
             echo "Api call dosen't exist";
