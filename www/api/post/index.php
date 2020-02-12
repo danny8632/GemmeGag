@@ -2,6 +2,8 @@
 
 require __DIR__."/../api.php";
 
+session_start();
+
 class Post extends Api {
 
     private $conn;
@@ -58,7 +60,7 @@ class Post extends Api {
     {
         $req = $this->getRequest()[1];
 
-        if(empty($req) || !isset($req['title']) || empty($req['title']) || !isset($req['description']) || empty($req['description']))
+        if(empty($req) || !isset($req['title']) || empty($req['title']) || !isset($req['description']) || empty($req['description']) || !isset($_SESSION["user_id"]))
             return true;
 
         $target_file = "sites/upload/images/" . date("Y-m-d_H:i:s") . "_" . basename($_FILES["fileToUpload"]["name"]);
@@ -80,22 +82,20 @@ class Post extends Api {
         {
             $this->conn = $this->getDbConn();
 
-            $stmt = $this->conn->prepare("INSERT INTO posts (title, description, file, userID) VALUES (?, ?, ?, ?)");
-            $stmt->bindParam(":id", $post_id);
-            $stmt->execute();
-            
-            $sql = $conn->prepare("INSERT INTO posts (title, description, file, userID) VALUES (?, ?, ?, ?)");
-            // 'userID' - last parameter in bind_param call is currently hardcoded to 1
+            $title = trim($req['title']);
+            $description = trim($req['description']);
 
+            $stmt = $this->conn->prepare("INSERT INTO posts (title, description, file, userID) VALUES (:title, :description, :file, :userID)");
+            $stmt->bindParam(':title', $title, PDO::PARAM_STR);
+            $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+            $stmt->bindParam(':file', $target_file, PDO::PARAM_STR);
+            $stmt->bindParam(':userID', $_SESSION["user_id"], PDO::PARAM_INT);
             
-            $userID = 1;
-            $sql->bind_param("sssi", trim($req['title']), trim($req["description"]), $target_file, $userID);
-            if ($sql->execute()) {
+            if ($stmt->execute()) {
                 echo "Record created";
             } else {
                 echo "WONG";
             }
-            $sql->close();
         } 
         else 
         {
