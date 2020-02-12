@@ -1,8 +1,9 @@
 <?php
     include 'conf.php';
+    
     $title = trim($_POST["title"]);
     $desc = trim($_POST["description"]);
-    $target_dir = "../../Sites/Upload/images/";
+    $target_dir = "../../sites/upload/images/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -42,12 +43,17 @@
     } else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-            $sql = "INSERT INTO posts (title, description, file, userID) VALUES ('".$title."', '".$desc."', '" . $target_file . "', 1)";
-            if ($conn->query($sql) === TRUE) {
+            
+            $sql = $conn->prepare("INSERT INTO posts (title, description, file, userID) VALUES (?, ?, ?, ?)");
+            // 'userID' - last parameter in bind_param call is currently hardcoded to 1
+            $userID = 1;
+            $sql->bind_param("sssi", $title, $desc, $target_file, $userID);
+            if ($sql->execute()) {
                 echo "Record created";
             } else {
                 echo "WONG";
             }
+            $sql->close();
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
