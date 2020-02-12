@@ -23,12 +23,6 @@ class Post extends Api {
 
         $this->conn = $this->getDbConn();
 
-        // Debug
-        $request = [];
-        $request['req'] = $req;
-
-
-        $sql = "SELECT * FROM posts";
 
         if(isset($req[1]) && !empty($req[1]))
         {

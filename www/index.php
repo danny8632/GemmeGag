@@ -38,6 +38,14 @@ if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api_v1")
 
             break;
 
+        case 'comment':
+    
+            require __DIR__ . '/api/comment/index.php';
+
+            new Comment();
+
+            break;
+
         
         default:
             echo "Api call dosen't exist";
