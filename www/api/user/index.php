@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require __DIR__."/../api.php";
 
 class User extends Api {
@@ -9,19 +11,6 @@ class User extends Api {
     function __construct() {
 
         parent::__construct();
-
-    }
-
-    function _GET() 
-    {
-        $this->conn = $this->getDbConn();
-        $stmt = $this->conn->prepare("SELECT * FROM posts");
-        $stmt->execute();
-
-        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-
-        echo json_encode($stmt->fetchAll());
 
     }
 
@@ -45,7 +34,10 @@ class User extends Api {
 
         if($stmt->rowCount() > 0)
         {
-            echo "Username is in use";
+            echo json_encode(array(
+                "success" => false,
+                "msg" => "Username already in use"
+            ));
             return;
         }
         else
@@ -58,7 +50,10 @@ class User extends Api {
 
             if($stmt->rowCount() > 0)
             {
-                echo 'User has ben created';
+                echo json_encode(array(
+                    "success" => true,
+                    "msg" => "User has ben created"
+                ));
             }
 
         }
@@ -79,23 +74,32 @@ class User extends Api {
         $password = $req['password'];
 
         if(empty($username) || empty($password))
+        {
+            echo json_encode($req);
             return;
+        }
 
         $this->conn = $this->getDbConn();
         $stmt = $this->conn->prepare("SELECT * FROM `users` WHERE `username` = :username LIMIT 1");
         $stmt->bindParam(':username', $username);
         $stmt->execute();
 
-        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
-
-        if(empty($result))
+        if($stmt->rowCount() == 0)
         {
-            echo "user dosn't exist";
+            echo json_encode(array(
+                "success" => false,
+                "msg" => "User dosn't exists"
+            ));
         }
         else
         {
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
             if(password_verify($password, $result['password']))
             {
+                $_SESSION["user_id"] = $result['id'];
+                $_SESSION["user_name"] = $result['name'];
+                $_SESSION['username'] = $result['username'];
+
                 echo json_encode(array(
                     "id" => $result['id'],
                     'name' => $result['name']
@@ -107,5 +111,15 @@ class User extends Api {
                 echo "wong";
             }
         }
+    }
+
+    function logout()
+    {
+        session_start();
+        session_destroy();
+        echo json_encode(array(
+            "success" => true
+        ));
+        header("Location: ./../");
     }
 }
