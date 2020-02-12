@@ -21,7 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `gemmegag`
 --
-
+DROP DATABASE IF EXISTS `gemmegag`;
+CREATE DATABASE IF NOT EXISTS `gemmegag` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_danish_ci */;
+USE `gemmegag`;
 -- --------------------------------------------------------
 
 --
