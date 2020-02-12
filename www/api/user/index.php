@@ -63,4 +63,49 @@ class User extends Api {
 
         }
     }
+
+
+    function login() {
+
+        $req = $this->getRequest()[1];
+
+        if(empty($req))
+        {
+            echo "Req empty";
+            return;
+        }
+
+        $username = $req['username'];
+        $password = $req['password'];
+
+        if(empty($username) || empty($password))
+            return;
+
+        $this->conn = $this->getDbConn();
+        $stmt = $this->conn->prepare("SELECT * FROM `users` WHERE `username` = :username LIMIT 1");
+        $stmt->bindParam(':username', $username);
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC)[0];
+
+        if(empty($result))
+        {
+            echo "user dosn't exist";
+        }
+        else
+        {
+            if(password_verify($password, $result['password']))
+            {
+                echo json_encode(array(
+                    "id" => $result['id'],
+                    'name' => $result['name']
+                    )
+                );
+            }
+            else
+            {
+                echo "wong";
+            }
+        }
+    }
 }
