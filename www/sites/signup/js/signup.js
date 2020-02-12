@@ -27,7 +27,7 @@ $( document ).ready(function() {
 
                 if(resp['success'] == false)
                 {
-                    alert("Signup failed" + resp['msg'])
+                    alert("Signup failed " + resp['msg'])
                 }
                 else
                 {

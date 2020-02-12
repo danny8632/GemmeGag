@@ -28,15 +28,17 @@ class User extends Api {
             return;
 
         $this->conn = $this->getDbConn();
-        $stmt = $this->conn->prepare("SELECT * FROM `users` WHERE `username` = :username");
+        $stmt = $this->conn->prepare("SELECT * FROM `users` WHERE `username` = :username OR `name` = :name");
         $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':name', $name);
+        
         $stmt->execute();
 
         if($stmt->rowCount() > 0)
         {
             echo json_encode(array(
                 "success" => false,
-                "msg" => "Username already in use"
+                "msg" => "Username or Name already in use"
             ));
             return;
         }
