@@ -12,49 +12,6 @@
     border: solid 10px #262626;
 }
 
-/*Comments container*/
-.commentsCon {
-    background-color: #333333;
-    border: solid 10px #262626;
-}
-.comment {
-    border-top: solid 2px #404040;
-    padding: 5px;
-}
-.commentHead {
-    display: flex;
-    margin-bottom: 8px;
-}
-.commentHeadText {
-    text-decoration-line: none;
-    font-family: 'Roboto', sans-serif;
-    color: white;
-}
-.commentTimePosted {
-    font-family: 'Roboto', sans-serif;
-    color: #a6a6a6;
-    margin-left: 5px;
-}
-.commentBody {
-    margin-bottom: 8px;
-}
-.commentText {
-    font-family: 'Roboto', sans-serif;
-}
-.commentFoot {
-    display: flex;
-}
-.commentVotes {
-    display: flex;
-    /*width: 30%;
-    margin: auto;*/
-}
-.commentUpvote, .commentTotalVotes, .commentDownvote {
-    width: fit-content;
-    width: -moz-fit-content;
-    margin: auto;
-}
-
 /*Title container*/
 .titleCon {
     padding: 5px;
@@ -142,4 +99,58 @@
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
     color: #e6e6e6;
+}
+
+/*Comments container*/
+.commentsCon {
+    background-color: #333333;
+    border: solid 10px #262626;
+}
+.comment {
+    border-top: solid 2px #404040;
+    padding: 5px;
+}
+.commentHead {
+    display: flex;
+    margin-bottom: 8px;
+}
+.commentHeadText {
+    text-decoration-line: none;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+}
+.commentTimePosted {
+    font-family: 'Roboto', sans-serif;
+    color: #a6a6a6;
+    margin-left: 5px;
+}
+.commentBody {
+    margin-bottom: 8px;
+}
+.commentText {
+    font-family: 'Roboto', sans-serif;
+}
+.commentFoot {
+    display: flex;
+}
+.commentVotes {
+    display: flex;
+    /*width: 30%;
+    margin: auto;*/
+}
+.commentUpvote, .commentTotalVotes, .commentDownvote {
+    width: fit-content;
+    width: -moz-fit-content;
+    margin: auto;
+}
+.commentUpvote, .commentDownvote {
+    color: #a6a6a6;
+}
+.commentUpvote:hover, .commentDownvote:hover {
+ cursor: pointer;
+} 
+.commentTotalVotes {
+    color: #e6e6e6;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
