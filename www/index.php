@@ -30,6 +30,14 @@ if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api_v1")
 
             break;
 
+        case 'post':
+        
+            require __DIR__ . '/api/post/index.php';
+
+            new Post();
+
+            break;
+
         
         default:
             echo "Api call dosen't exist";
