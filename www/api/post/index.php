@@ -38,13 +38,13 @@ class Post extends Api {
 
         if(isset($post_id) && !empty($post_id))
         {
-            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created FROM `posts` INNER JOIN users ON posts.userID = users.id WHERE `id` = :id");
+            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created, SUM(postvotes.vote = 'Upvote' AND postvotes.vote IS NOT NULL) AS 'UpVotes', SUM(postvotes.vote = 'Downvote' AND postvotes.vote IS NOT NULL) AS 'DownVotes' FROM posts LEFT JOIN postvotes on posts.id = postvotes.postID LEFT JOIN users on posts.userID = users.id WHERE posts.id = :id GROUP BY posts.id, postvotes.postID ");
             $stmt->bindParam(":id", $post_id);
             $stmt->execute();
         }
         else
         {
-            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created FROM `posts` INNER JOIN users ON posts.userID = users.id LIMIT 50");
+            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created, SUM(postvotes.vote = 'Upvote' AND postvotes.vote IS NOT NULL) AS 'UpVotes', SUM(postvotes.vote = 'Downvote' AND postvotes.vote IS NOT NULL) AS 'DownVotes' FROM posts LEFT JOIN postvotes on posts.id = postvotes.postID LEFT JOIN users on posts.userID = users.id GROUP BY posts.id, postvotes.postID LIMIT 50");
             $stmt->execute();
         }
 
