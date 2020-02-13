@@ -46,6 +46,14 @@ if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api_v1")
 
             break;
 
+        case 'vote':
+
+            require __DIR__ . '/api/vote/index.php';
+
+            new Vote();
+
+            break;
+
         
         default:
             echo "Api call dosen't exist";
