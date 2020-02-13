@@ -5,6 +5,23 @@ $( document ).ready(function() {
     data = {
         "post_id": post_id
     };
+
+    function getHoursSince(date)
+    {
+        var newDate = new Date();
+        var newTime = Date.parse(date);
+
+        var currentTime = newDate.getTime();
+
+        var diffInMilli = currentTime - newTime;
+        var hoursSince = (((diffInMilli / 1000) / 60) / 60);
+
+        console.log(hoursSince);
+
+        var roundedDown = Math.floor(hoursSince);
+
+        return roundedDown;
+    }
     
     $.ajax({
         type: "GET",
@@ -16,6 +33,7 @@ $( document ).ready(function() {
             var post = JSON.parse(post_data)[0]
 
             console.log(post)
+            var timeSincePost = getHoursSince(post.created);
 
             var html = `
                 <div class="postCon">
@@ -26,7 +44,7 @@ $( document ).ready(function() {
     
                         <div class="opCon">
                             <p class="opText">Posted by: <a href="/user?id=${post.userID}">${post.username}</a></p>
-                            <p class="timePosted">${/*timeSincePost*/ post.created} hours ago</p>
+                            <p class="timePosted">${timeSincePost} hour(s) ago</p>
                         </div>
                     </div>
     
@@ -85,11 +103,12 @@ $( document ).ready(function() {
                     
                     
                     comments.forEach(comment => {
+                        var timeSincePost = getHoursSince(comment.created);
                         comment_html += `
                             <div class="comment">
                                 <div class="commentHead">
                                     <a class="commentHeadText" href="#">${comment.username}</a>
-                                    <div class="commentTimePosted">${comment.created}</div>
+                                    <div class="commentTimePosted">${timeSincePost}h</div>
                                 </div>
                                 <div class="commentBody">
                                     <p class="commentText">${comment.text}</p>
