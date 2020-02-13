@@ -139,6 +139,14 @@ else
 
             break;
 
+        case 'trending' :
+
+            require __DIR__ . '/sites/trending/index.php';
+
+            new Trending();
+
+            break;
+
         default:
     
             require __DIR__ . '/404.php';

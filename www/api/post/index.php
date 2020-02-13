@@ -49,7 +49,7 @@ class Post extends Api {
         echo json_encode($result);
     }
 
-
+    
     function _POST()
     {
         $req = $this->getRequest()[1];
@@ -98,4 +98,15 @@ class Post extends Api {
         
     }
 
+
+    function getTrending()
+    {
+        $this->conn = $this->getDbConn();
+        $stmt = $this->conn->prepare("SELECT * FROM trending_posts");
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($result);
+    }
 }

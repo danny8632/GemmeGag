@@ -1,11 +1,16 @@
 $( document ).ready(function() {
 
+    data = {
+        "method": "getTrending"
+    };
+    
     $.ajax({
         type: "GET",
         url: "/api_v1/post",
+        data: data,
         timeout: 600000,
         success: function (data) {
-
+            console.log(data)
             var response = JSON.parse(data)
             
             console.log(response)
@@ -13,7 +18,7 @@ $( document ).ready(function() {
             for (var i = 0; i < response.length; ++i) {
                 var post = response[i];
                 var timeSincePost = getHoursSince(post.created);
-
+                
                 var fileHtml = getPostType(post.file);
                 var imgConId = `postMedia${i+1}`
 
