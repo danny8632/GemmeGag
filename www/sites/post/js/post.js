@@ -49,7 +49,6 @@ $( document ).ready(function() {
 
     }
 
-
     function getPost(callback) {
         
         $.ajax({
