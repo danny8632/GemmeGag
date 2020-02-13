@@ -25,7 +25,6 @@ $( document ).ready(function() {
         return roundedDown;
     }
 
-
     function run() {
         getPost(() => {
 
@@ -134,8 +133,6 @@ $( document ).ready(function() {
         });
     }
     
-
-
     function getComment(callback) {
     
         $.ajax({
@@ -184,7 +181,6 @@ $( document ).ready(function() {
             }
         });
     }
-
 
     function uploadComment(e) {
 
