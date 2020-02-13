@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 10, 2020 at 12:15 PM
+-- Generation Time: Feb 13, 2020 at 07:22 AM
 -- Server version: 10.4.12-MariaDB-1:10.4.12+maria~bionic
 -- PHP Version: 7.4.1
 
@@ -12,6 +12,9 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP DATABASE IF EXISTS `gemmegag`;
+CREATE DATABASE IF NOT EXISTS `gemmegag`;
+USE `gemmegag`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,9 +24,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `gemmegag`
 --
-DROP DATABASE IF EXISTS `gemmegag`;
-CREATE DATABASE IF NOT EXISTS `gemmegag` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_danish_ci */;
-USE `gemmegag`;
+
 -- --------------------------------------------------------
 
 --
@@ -38,6 +39,15 @@ CREATE TABLE `comments` (
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `text`, `postID`, `userID`, `created`, `modified`) VALUES
+(2, 'COMMENT', 6, 1, '2020-02-11 08:21:45', '2020-02-11 08:21:45'),
+(3, 'asddsadsxz', 6, 1, '2020-02-11 08:24:02', '2020-02-11 08:24:02'),
+(6, 'dette er en kommentar', 6, 1, '2020-02-11 11:25:28', '2020-02-11 11:25:28');
 
 -- --------------------------------------------------------
 
@@ -68,6 +78,17 @@ CREATE TABLE `posts` (
   `modified` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
+--
+-- Dumping data for table `posts`
+--
+
+INSERT INTO `posts` (`id`, `title`, `description`, `file`, `userID`, `created`, `modified`) VALUES
+(6, 'Dette er en titel', 'Dette er en beskrivelse', '../../Sites/Upload/images/git.png', 1, '2020-02-11 07:41:41', '2020-02-11 07:41:41'),
+(7, '', '', '../../Sites/Upload/images/git.png', 1, '2020-02-11 08:44:33', '2020-02-11 08:44:33'),
+(8, 'Post1', 'Desc1', '../../Sites/Upload/images/git.png', 1, '2020-02-11 08:45:28', '2020-02-11 08:45:28'),
+(9, 'benjaminllkk', 'test', '../../sites/upload/images/index.jpeg', 1, '2020-02-12 08:34:45', '2020-02-12 08:34:45'),
+(10, 'Tittie title', 'bobs and vagene', 'API/bob/and/vagene', 1, '2020-02-12 13:12:26', '2020-02-12 13:12:26');
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +102,18 @@ CREATE TABLE `postvotes` (
   `userID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
+--
+-- Dumping data for table `postvotes`
+--
+
+INSERT INTO `postvotes` (`id`, `vote`, `postID`, `userID`) VALUES
+(1, 'Upvote', 6, 1),
+(2, 'Upvote', 6, 1),
+(3, 'Downvote', 6, 1),
+(4, 'Upvote', 10, 1),
+(7, 'Downvote', 10, 1),
+(8, 'Downvote', 10, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -90,8 +123,12 @@ CREATE TABLE `postvotes` (
 CREATE TABLE `trending_posts` (
 `id` int(11)
 ,`title` varchar(255)
+,`description` varchar(255)
+,`file` varchar(255)
 ,`created` timestamp
-,`Total` bigint(21)
+,`name` varchar(255)
+,`username` varchar(255)
+,`TotalVotes` decimal(23,0)
 );
 
 -- --------------------------------------------------------
@@ -109,6 +146,13 @@ CREATE TABLE `users` (
   `modifed` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `username`, `password`, `created`, `modifed`) VALUES
+(1, 'Ben', 'bensand', '1234', '2020-02-11 07:41:10', '2020-02-11 07:41:10');
+
 -- --------------------------------------------------------
 
 --
@@ -116,7 +160,7 @@ CREATE TABLE `users` (
 --
 DROP TABLE IF EXISTS `trending_posts`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `trending_posts`  AS  select `posts`.`id` AS `id`,`posts`.`title` AS `title`,`posts`.`created` AS `created`,(select count(`postvotes`.`postID`) from `postvotes` where `posts`.`id` = `postvotes`.`postID` and `postvotes`.`vote` = 'Upvote') AS `Total` from `posts` where timestampdiff(HOUR,`posts`.`created`,current_timestamp()) < 2 ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `trending_posts`  AS  select `posts`.`id` AS `id`,`posts`.`title` AS `title`,`posts`.`description` AS `description`,`posts`.`file` AS `file`,`posts`.`created` AS `created`,`users`.`name` AS `name`,`users`.`username` AS `username`,sum(if(`postvotes`.`vote` = 'Upvote',1,-1) AND `postvotes`.`vote` IS NOT NULL) AS `TotalVotes` from ((`posts` left join `users` on(`posts`.`userID` = `users`.`id`)) left join `postvotes` on(`posts`.`id` = `postvotes`.`postID`)) where timestampdiff(HOUR,`posts`.`created`,current_timestamp()) < 5 group by `posts`.`id`,`postvotes`.`postID` order by coalesce(sum(if(`postvotes`.`vote` = 'Upvote',1,-1))) desc ;
 
 --
 -- Indexes for dumped tables
@@ -168,7 +212,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `commentvotes`
@@ -180,19 +224,19 @@ ALTER TABLE `commentvotes`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `postvotes`
 --
 ALTER TABLE `postvotes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -229,4 +273,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

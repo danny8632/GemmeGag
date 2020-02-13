@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -31,7 +35,20 @@
                     <input placeholder="Search..." type="text">
                 </form>
             </div>
-            <div class="login">
-                <a href="/login" class="loginButton">Login</a>
-            </div>
+            <?php
+
+                if(isset($_SESSION['user_id']))
+                {
+                    echo '<div class="login">
+                            <a href="/api_v1/user?method=logout" class="loginButton">Logout</a>
+                        </div>';
+                }
+                else
+                {
+                    echo '<div class="login">
+                            <a href="/login" class="loginButton">Login</a>
+                        </div>';
+                }
+
+            ?>
         </div>
