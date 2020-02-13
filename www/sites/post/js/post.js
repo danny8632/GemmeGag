@@ -1,6 +1,9 @@
 $( document ).ready(function() {
+
+    var post_id = $('.wrapper').data('post-id')
+
     data = {
-        "post_id": 6 
+        "post_id": post_id
     };
     
     $.ajax({
@@ -8,14 +11,12 @@ $( document ).ready(function() {
         url: "/api_v1/post",
         data: data,
         timeout: 600000,
-        success: function (data) {
+        success: function (post_data) {
 
-            var post = JSON.parse(data)[0]
-            
+            var post = JSON.parse(post_data)[0]
+
             console.log(post)
 
-
-            //var timeSincePost = getHoursSince(post.created);
             var html = `
                 <div class="postCon">
                     <div class="titleCon">
@@ -61,50 +62,40 @@ $( document ).ready(function() {
             $.ajax({
                 type: "GET",
                 url: "/api_v1/comment",
-                data: {post_id: 6},
+                data: data,
                 timeout: 600000,
                 success: function (data) {
-                    var post = JSON.parse(data)
-                    console.log(post)
-                    for 
-                    var html3 = `
-                    <div class="commentsCon">
+                    var comments = JSON.parse(data)
 
-                    <!--Comment Structure-->
-                    <div class="comment">
-                        <div class="commentHead">
-                            <a class="commentHeadText" href="#">Felix</a>
-                            <div class="commentTimePosted">3h</div>
-                        </div>
-                        <div class="commentBody">
-                            <p class="commentText">Det var et mega fedt post</p>
-                        </div>
-                        <div class="commentFoot">
-                            <div class="commentVotes">
-                                <div class="commentUpvote">▲</div>
-                                <div class="commentTotalVotes">5k</div>
-                                <div class="commentDownvote">▼</div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="comment">
-                        <div class="commentHead">
-                            <a class="commentHeadText" href="#">Felix</a>
-                            <div class="commentTimePosted">3h</div>
-                        </div>
-                        <div class="commentBody">
-                            <p class="commentText">Det var et mega fedt post</p>
-                        </div>
-                        <div class="commentFoot">
-                            <div class="commentVotes">
-                                <div class="commentUpvote">▲</div>
-                                <div class="commentTotalVotes">5k</div>
-                                <div class="commentDownvote">▼</div>
-                            </div>
-                        </div>
-                    </div>
-                </div> `
+                    var comment_html = `<div class="commentsCon">`;
+                    
+                    comments.forEach(comment => {
+                        comment_html += `
+                            <div class="comment">
+                                <div class="commentHead">
+                                    <a class="commentHeadText" href="#">${comment.username}</a>
+                                    <div class="commentTimePosted">${comment.created}</div>
+                                </div>
+                                <div class="commentBody">
+                                    <p class="commentText">${comment.text}t</p>
+                                </div>
+                                <div class="commentFoot">
+                                    <div class="commentVotes">
+                                        <div class="commentUpvote">▲</div>
+                                        <div class="commentTotalVotes">${comment.UpVotes - comment.DownVotes}</div>
+                                        <div class="commentDownvote">▼</div>
+                                    </div>
+                                </div>
+                            </div>`
+                    });
+                    
+
+
+                    comment_html += `</div>`
+
+                    html += comment_html
+
+                    $(".wrapper").append(html);
                 },
                 error: function (e) {
 
@@ -112,7 +103,8 @@ $( document ).ready(function() {
         
                 }
             });
-                $(".wrapper").append(html);
+                
+            
         },
         error: function (e) {
 

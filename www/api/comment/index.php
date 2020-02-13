@@ -47,19 +47,19 @@ class Comment extends Api {
 
         if(!empty($comment_id))
         {
-            $stmt = $this->conn->prepare("SELECT * FROM `comments` WHERE `id` = :id");
+            $stmt = $this->conn->prepare("SELECT `comments`.*, `users`.`username`, `users`.`name`, `users`.`id` AS 'user_id', SUM(commentvotes.vote = 'Upvote' AND commentvotes.vote IS NOT NULL) AS 'UpVotes', SUM(commentvotes.vote = 'Downvote' AND commentvotes.vote IS NOT NULL) AS 'DownVotes' FROM `comments` INNER JOIN `users` ON `comments`.`userID` = `users`.`id` LEFT JOIN commentvotes on comments.id = commentvotes.commentID WHERE `id` = :id GROUP BY comments.id, commentvotes.commentID");
             $stmt->bindParam(":id", $comment_id);
             $stmt->execute();
         }
         else if(!empty($post_id))
         {
-            $stmt = $this->conn->prepare("SELECT * FROM `comments` WHERE `postID` = :id");
+            $stmt = $this->conn->prepare("SELECT `comments`.*, `users`.`username`, `users`.`name`, `users`.`id` AS 'user_id', SUM(commentvotes.vote = 'Upvote' AND commentvotes.vote IS NOT NULL) AS 'UpVotes', SUM(commentvotes.vote = 'Downvote' AND commentvotes.vote IS NOT NULL) AS 'DownVotes' FROM `comments` INNER JOIN `users` ON `comments`.`userID` = `users`.`id` LEFT JOIN commentvotes on comments.id = commentvotes.commentID WHERE `postID` = :id GROUP BY comments.id, commentvotes.commentID");
             $stmt->bindParam(":id", $post_id);
             $stmt->execute();
         }
         else if(!empty($user_id))
         {
-            $stmt = $this->conn->prepare("SELECT * FROM `comments` WHERE `userID` = :id");
+            $stmt = $this->conn->prepare("SELECT `comments`.*, `users`.`username`, `users`.`name`, `users`.`id` AS 'user_id', SUM(commentvotes.vote = 'Upvote' AND commentvotes.vote IS NOT NULL) AS 'UpVotes', SUM(commentvotes.vote = 'Downvote' AND commentvotes.vote IS NOT NULL) AS 'DownVotes' FROM `comments` INNER JOIN `users` ON `comments`.`userID` = `users`.`id` LEFT JOIN commentvotes on comments.id = commentvotes.commentID WHERE `userID` = :id GROUP BY comments.id, commentvotes.commentID");
             $stmt->bindParam(":id", $user_id);
             $stmt->execute();
         }
