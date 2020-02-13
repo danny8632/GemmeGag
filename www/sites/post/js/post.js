@@ -34,6 +34,8 @@ $( document ).ready(function() {
 
         $('#comments').find('.newCommentForm').on('submit', (e) => uploadComment(e));
 
+        $('.wrapper').find('.votebtn').on('click', (e) => vote($(e.target).data()))
+
     }
 
     function getPost(callback) {
@@ -76,9 +78,9 @@ $( document ).ready(function() {
                         <div class="toolbarCon">
                             <div class="voteCon">
                                 <div class="voteCon2">
-                                    <div class="upvote">▲</div>
+                                    <div class="upvote votebtn" data-post_id="${post.id}" data-vote="Upvote">▲</div>
                                     <div class="totalVotes">${post.totalvotes == null ? '0' : post.totalvotes}</div>
-                                    <div class="downvote">▼</div>
+                                    <div class="downvote votebtn" data-post_id="${post.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
         
@@ -146,9 +148,9 @@ $( document ).ready(function() {
                             </div>
                             <div class="commentFoot">
                                 <div class="commentVotes">
-                                    <div class="commentUpvote">▲</div>
+                                    <div class="commentUpvote votebtn" data-comment_id="${comment.id}" data-vote="Upvote">▲</div>
                                     <div class="commentTotalVotes">${comment.TotalVotes == null ? '0' : comment.TotalVotes}</div>
-                                    <div class="commentDownvote">▼</div>
+                                    <div class="commentDownvote votebtn" data-comment_id="${comment.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
                         </div>`
