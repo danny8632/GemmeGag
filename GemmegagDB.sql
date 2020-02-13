@@ -160,7 +160,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `created`, `modifed`)
 --
 DROP TABLE IF EXISTS `trending_posts`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `trending_posts`  AS  select `posts`.`id` AS `id`,`posts`.`title` AS `title`,`posts`.`description` AS `description`,`posts`.`file` AS `file`,`posts`.`created` AS `created`,`users`.`name` AS `name`,`users`.`username` AS `username`,coalesce(sum(if(`postvotes`.`vote` = 'Upvote',1,-1))) AS `TotalVotes` from ((`posts` left join `users` on(`posts`.`userID` = `users`.`id`)) left join `postvotes` on(`posts`.`id` = `postvotes`.`postID`)) where timestampdiff(HOUR,`posts`.`created`,current_timestamp()) < 5 group by `posts`.`id`,`postvotes`.`postID` order by coalesce(sum(if(`postvotes`.`vote` = 'Upvote',1,-1))) desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `trending_posts`  AS  select `posts`.`id` AS `id`,`posts`.`title` AS `title`,`posts`.`description` AS `description`,`posts`.`file` AS `file`,`posts`.`created` AS `created`,`users`.`name` AS `name`,`users`.`username` AS `username`,sum(if(`postvotes`.`vote` = 'Upvote',1,-1) AND `postvotes`.`vote` IS NOT NULL) AS `TotalVotes` from ((`posts` left join `users` on(`posts`.`userID` = `users`.`id`)) left join `postvotes` on(`posts`.`id` = `postvotes`.`postID`)) where timestampdiff(HOUR,`posts`.`created`,current_timestamp()) < 5 group by `posts`.`id`,`postvotes`.`postID` order by coalesce(sum(if(`postvotes`.`vote` = 'Upvote',1,-1))) desc ;
 
 --
 -- Indexes for dumped tables
