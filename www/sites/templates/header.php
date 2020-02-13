@@ -1,4 +1,5 @@
 <?php
+    #include 'js/posts_global.js';
     session_start();
 ?>
 
@@ -11,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/sites/templates/header.css">
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">  
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
+        <script src="js/posts_global.js"></script>
         <?php
 
             foreach ($this->includeArr as $type => $val) {
