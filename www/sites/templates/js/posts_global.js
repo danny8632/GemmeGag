@@ -16,3 +16,37 @@ function getHoursSince(date)
     return roundedDown;
 }
 
+function getPostType(filePath)
+{
+    var file_html = ``
+    fileExtension = filePath.substr(filePath.lastIndexOf('.') + 1)
+
+    switch (fileExtension)
+    {
+        case 'mp4':
+            file_html = `
+            <div class="imgCon">
+                <video class="postImage" controls>
+                    <source src="${filePath}" type="video/mp4">
+                </video>
+            </div>
+            `
+            break
+        case 'mp3':
+
+            file_html = `
+            <div class="imgCon">
+                <video class="postImage" controls>
+                    <source src="${filePath}" type="video/mp4">
+                </video>
+            </div>
+            `
+            break
+        default:
+            file_html = `<img class="postImage" src="${filePath}">`
+            break
+    }
+    
+    return file_html
+}
+

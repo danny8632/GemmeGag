@@ -1,7 +1,5 @@
 $( document ).ready(function() {
 
-
-
     $.ajax({
         type: "GET",
         url: "/api_v1/post",
@@ -15,8 +13,10 @@ $( document ).ready(function() {
             for (var i = 0; i < response.length; ++i) {
                 var post = response[i];
                 var totalvotes = post.UpVotes - post.DownVotes
-                console.log(post)
-
+                //console.log(post)
+                
+                var filePath = post.file;
+                
                 var timeSincePost = getHoursSince(post.created);
                 var html = `
                     <div class="postCon">
@@ -32,7 +32,7 @@ $( document ).ready(function() {
                         </div>
         
                         <div class="imgCon">
-                            <img class="postImage" src="${post.file}">
+                            
                         </div>
         
                         <div class="descriptionCon">
@@ -61,6 +61,7 @@ $( document ).ready(function() {
                 $("#posts").append(html);
             }
 
+            $(".imgCon").append(getPostType(filePath));
 
             $('#posts').find('.votebtn').on('click', (e) => {
                 
