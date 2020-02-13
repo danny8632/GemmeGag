@@ -1,0 +1,72 @@
+#uploadSite {
+    max-width: 80%;
+    margin: auto;
+}
+
+#uploadSite .content .uploadPost {
+    margin: auto;
+    width: 500px;
+}
+
+#canvas {
+    width: 200px;
+    height: 200px;
+}
+
+#uploadSite .content .uploadPost input {
+    width: 80%;
+    margin: 0px;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: content-box;
+    color: black;
+    font-weight: bold;
+}
+
+#uploadSite .content .uploadPost input[name="submit"]:hover {
+    background-color: gray;
+}
+
+#uploadSite .content .uploadPost .uploadFileWrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#uploadSite .content .uploadPost .uploadFileBtn {
+    width: 80%;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    background-color: white;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-sizing: content-box;
+}
+
+#uploadSite .content .uploadPost .uploadFileWrapper:hover .uploadFileBtn {
+    background-color: gray;
+}
+
+#uploadSite .content .uploadPost #fileToUpload {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+
+}
+
+
+#uploadSite .content .uploadPost p {
+    margin-top: 10px;
+}
+
+#uploadSite .content .uploadPost #fileToUpload {
+    color: white;
+}
