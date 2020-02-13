@@ -122,6 +122,15 @@ else
             new Comment();
 
             break;
+
+        case 'user' :
+
+            require __DIR__ . '/sites/user/index.php';
+
+            new User();
+
+            break;
+
         default:
     
             require __DIR__ . '/404.php';
