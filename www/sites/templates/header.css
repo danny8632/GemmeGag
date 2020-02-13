@@ -38,6 +38,7 @@ body {
 .logo, .search, .login {
     width: 30%;
     margin: auto;
+    display: flex;
 }
 .loginButton {
     width: -moz-fit-content;
