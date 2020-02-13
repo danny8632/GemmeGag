@@ -9,13 +9,19 @@ class Post Extends Sites {
             "/sites/post/css/post.css"
         ),
         "html" => array(
-            "post/html/post.html"
+            "post/html/post.phtml"
+        ),
+        "js" => array(
+            "/sites/post/js/post.js"
         )
     );
 
     function __construct() {
 
         parent::__construct($this->includeFiles);
+
+
+        //echo '';
     }
 
 }
