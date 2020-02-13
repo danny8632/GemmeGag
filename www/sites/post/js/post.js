@@ -4,8 +4,6 @@ $( document ).ready(function() {
 
     var html = "";
 
-    var comment_html = "";
-
     data = {
         "post_id": post_id
     };
@@ -48,7 +46,7 @@ $( document ).ready(function() {
             $('#comments').toggle();
         })
 
-        $('#comments').find('.newCommentForm').on('submit', (e) => uploadComment(e))
+        $('#comments').find('.newCommentForm').on('submit', (e) => uploadComment(e));
 
     }
 
@@ -106,6 +104,23 @@ $( document ).ready(function() {
                             </div>
                         </div>
                     </div>
+                    <div id="comments" class="commentsCon">
+
+                        <div class="newCommentCon">
+                            <form method="POST" enctype="multipart/form-data" class="newCommentForm">
+                                <div class="newCommentHead">
+                                    <p class="newCommentHeadText">Post a comment:</p>
+                                </div>
+                                <div class="newCommentTextCon">
+                                    <textarea class="newCommentText" name="commentText" type="text" placeholder="Comment..."></textarea>
+                                </div>
+                                <div class="newCommentButton">
+                                    <input type="submit" value="Post Comment">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
                 `;
                 
                 callback();
@@ -131,22 +146,7 @@ $( document ).ready(function() {
             success: function (data) {
                 var comments = JSON.parse(data)
 
-                comment_html = `<div id="comments" class="commentsCon">
-                    <div class="newCommentCon">
-                        <form method="POST" enctype="multipart/form-data" class="newCommentForm">
-                            <div class="newCommentHead">
-                                <p class="newCommentHeadText">Post a comment:</p>
-                            </div>
-                            <div class="newCommentTextCon">
-                                <textarea class="newCommentText" name="commentText" type="text" placeholder="Comment..."></textarea>
-                            </div>
-                            <div class="newCommentButton">
-                                <input type="submit" value="Post Comment">
-                            </div>
-                        </form>
-                    </div>
-                    `;
-                
+                var comment_html = '';
                 
                 comments.forEach(comment => {
                     var timeSincePost = getHoursSince(comment.created);
@@ -169,14 +169,9 @@ $( document ).ready(function() {
                         </div>`
                 });
                 
+                $("#comments").find('.comment').remove();
 
-
-                comment_html += `</div>`
-
-                $("#comments").remove();
-
-                $('.wrapper').append(comment_html)
-
+                $("#comments").append(comment_html)
                 
                 callback();
 
@@ -194,7 +189,7 @@ $( document ).ready(function() {
     function uploadComment(e) {
 
         e.preventDefault();
-
+            
         var data = $('#comments').find('.newCommentForm').serializeArray()[0];
 
         if(data.value == "")
@@ -214,7 +209,7 @@ $( document ).ready(function() {
 
                 //console.log(resp_data)
                 getComment(() => {
-                    $('#comments').show();
+                    $('#comments').find('.newCommentForm').find('textarea.newCommentText').val('');
                 });
             
             },
@@ -224,6 +219,7 @@ $( document ).ready(function() {
     
             }
         });
+        
     }
 
     run();
