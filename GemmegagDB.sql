@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Feb 12, 2020 at 01:15 PM
+-- Generation Time: Feb 13, 2020 at 07:22 AM
 -- Server version: 10.4.12-MariaDB-1:10.4.12+maria~bionic
 -- PHP Version: 7.4.1
 
@@ -12,6 +12,9 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP DATABASE IF EXISTS `gemmegag`;
+CREATE DATABASE IF NOT EXISTS `gemmegag`;
+USE `gemmegag`;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -21,9 +24,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `gemmegag`
 --
-DROP DATABASE IF EXISTS `gemmegag`;
-CREATE DATABASE IF NOT EXISTS `gemmegag` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_danish_ci */;
-USE `gemmegag`;
+
 -- --------------------------------------------------------
 
 --
@@ -109,9 +110,9 @@ INSERT INTO `postvotes` (`id`, `vote`, `postID`, `userID`) VALUES
 (1, 'Upvote', 6, 1),
 (2, 'Upvote', 6, 1),
 (3, 'Downvote', 6, 1),
-(4, 'Upvote', 6, 1),
-(7, 'Downvote', 9, 1),
-(8, 'Downvote', 9, 1);
+(4, 'Upvote', 10, 1),
+(7, 'Downvote', 10, 1),
+(8, 'Downvote', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -123,7 +124,10 @@ CREATE TABLE `trending_posts` (
 `id` int(11)
 ,`title` varchar(255)
 ,`description` varchar(255)
+,`file` varchar(255)
 ,`created` timestamp
+,`name` varchar(255)
+,`username` varchar(255)
 ,`TotalVotes` decimal(23,0)
 );
 
@@ -156,7 +160,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `password`, `created`, `modifed`)
 --
 DROP TABLE IF EXISTS `trending_posts`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `trending_posts`  AS  select `posts`.`id` AS `id`,`posts`.`title` AS `title`,`posts`.`description` AS `description`,`posts`.`created` AS `created`,sum(if(`postvotes`.`vote` = 'Upvote',1,-1) and `postvotes`.`vote` is not null) AS `TotalVotes` from (`posts` left join `postvotes` on(`posts`.`id` = `postvotes`.`postID`)) where timestampdiff(HOUR,`posts`.`created`,current_timestamp()) < 5 group by `posts`.`id`,`postvotes`.`postID` order by sum(if(`postvotes`.`vote` = 'Upvote',1,-1) and `postvotes`.`vote` is not null) desc ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `trending_posts`  AS  select `posts`.`id` AS `id`,`posts`.`title` AS `title`,`posts`.`description` AS `description`,`posts`.`file` AS `file`,`posts`.`created` AS `created`,`users`.`name` AS `name`,`users`.`username` AS `username`,coalesce(sum(if(`postvotes`.`vote` = 'Upvote',1,-1))) AS `TotalVotes` from ((`posts` left join `users` on(`posts`.`userID` = `users`.`id`)) left join `postvotes` on(`posts`.`id` = `postvotes`.`postID`)) where timestampdiff(HOUR,`posts`.`created`,current_timestamp()) < 5 group by `posts`.`id`,`postvotes`.`postID` order by coalesce(sum(if(`postvotes`.`vote` = 'Upvote',1,-1))) desc ;
 
 --
 -- Indexes for dumped tables
