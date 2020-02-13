@@ -1,27 +1,21 @@
 $( document ).ready(function() {
 
-
-
-    //var jsonObj;
-    //var response = JSON.parse(jsonObj)
-
     function getHoursSince(date)
     {
         var newDate = new Date();
-        var timestamp = new Date.parse(date);
+        var newTime = Date.parse(date);
 
         var currentTime = newDate.getTime();
-        var newTime = timestamp.getTime();
 
         var diffInMilli = currentTime - newTime;
-        var hoursSince = diffInMilli / 60 / 60 / 60;
+        var hoursSince = (((diffInMilli / 1000) / 60) / 60);
 
+        console.log(hoursSince);
 
         var roundedDown = Math.floor(hoursSince);
 
         return roundedDown;
     }
-
 
 
     $.ajax({
@@ -36,10 +30,10 @@ $( document ).ready(function() {
 
             for (var i = 0; i < response.length; ++i) {
                 var post = response[i];
-
+                var totalvotes = post.UpVotes - post.DownVotes
                 console.log(post)
 
-                //var timeSincePost = getHoursSince(post.created);
+                var timeSincePost = getHoursSince(post.created);
                 var html = `
                     <div class="postCon">
                         <div class="titleCon">
@@ -49,7 +43,7 @@ $( document ).ready(function() {
         
                             <div class="opCon">
                                 <p class="opText">Posted by: <a href="/user?id=${post.userID}">${post.username}</a></p>
-                                <p class="timePosted">${/*timeSincePost*/ post.created} hours ago</p>
+                                <p class="timePosted">${timeSincePost} hour(s) ago</p>
                             </div>
                         </div>
         
@@ -65,7 +59,7 @@ $( document ).ready(function() {
                             <div class="voteCon">
                                 <div class="voteCon2">
                                     <div class="upvote">▲</div>
-                                    <div class="totalVotes">${post.totalvotes}</div>
+                                    <div class="totalVotes">${totalvotes}</div>
                                     <div class="downvote">▼</div>
                                 </div>
                             </div>

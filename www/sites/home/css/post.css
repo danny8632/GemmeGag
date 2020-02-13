@@ -1,6 +1,11 @@
 /*Post container*/
 .postCon {
     border: solid 10px #262626;
+    margin-bottom: 20px;
+}
+.wrapper {
+    width: 60%;
+    margin: auto;
 }
 
 /*Title container*/
@@ -10,6 +15,8 @@
 }
 .titleText {
     font-size: 30px;
+    text-decoration-line: none;
+    color: white;
 }
 .opCon {
     display: flex;
@@ -85,6 +92,7 @@
     display: block;
     width: fit-content;
     width: -moz-fit-content;
+    text-decoration-line: none;
     margin: auto;
     font-size: 30px;
     font-family: 'Roboto', sans-serif;
