@@ -48,11 +48,11 @@ $( document ).ready(function() {
                         </div>
     
                         <div class="commentButtonCon">
-                            <a class="commentButton" href="/post?id=${post.id}">Comments</a>
+                            <a class="commentButton">Comments</a>
                         </div>
     
                         <div class="shareButtonCon">
-                            <a class="shareButton" href="/post?id=${post.id}">Share</a>
+                            <a class="shareButton" onclick="">Share</a>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,22 @@ $( document ).ready(function() {
                 success: function (data) {
                     var comments = JSON.parse(data)
 
-                    var comment_html = `<div class="commentsCon">`;
+                    var comment_html = `<div id="comments" class="commentsCon">
+                        <div class="newCommentCon">
+                            <form class="newCommentForm">
+                                <div class="newCommentHead">
+                                    <p class="newCommentHeadText">Post a comment:</p>
+                                </div>
+                                <div class="newCommentTextCon">
+                                    <textarea class="newCommentText" name="commentText" type="text" placeholder="Comment..."></textarea>
+                                </div>
+                                <div class="newCommentButton">
+                                    <input type="submit" value="Post Comment">
+                                </div>
+                            </form>
+                        </div>
+                        `;
+                    
                     
                     comments.forEach(comment => {
                         comment_html += `
@@ -77,7 +92,7 @@ $( document ).ready(function() {
                                     <div class="commentTimePosted">${comment.created}</div>
                                 </div>
                                 <div class="commentBody">
-                                    <p class="commentText">${comment.text}t</p>
+                                    <p class="commentText">${comment.text}</p>
                                 </div>
                                 <div class="commentFoot">
                                     <div class="commentVotes">
@@ -96,6 +111,12 @@ $( document ).ready(function() {
                     html += comment_html
 
                     $(".wrapper").append(html);
+
+
+
+                    $('.commentButtonCon').find('.commentButton').on('click', (e) => {
+                        $('#comments').toggle();
+                    })
                 },
                 error: function (e) {
 
