@@ -42,7 +42,7 @@ $( document ).ready(function() {
                         <div class="voteCon">
                             <div class="voteCon2">
                                 <div class="upvote">▲</div>
-                                <div class="totalVotes">${post.totalvotes}</div>
+                                <div class="totalVotes">${post.totalvotes == null ? '0' : post.totalvotes}</div>
                                 <div class="downvote">▼</div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@ $( document ).ready(function() {
                                 <div class="commentFoot">
                                     <div class="commentVotes">
                                         <div class="commentUpvote">▲</div>
-                                        <div class="commentTotalVotes">${comment.TotalVotes}</div>
+                                        <div class="commentTotalVotes">${comment.TotalVotes == null ? '0' : comment.TotalVotes}</div>
                                         <div class="commentDownvote">▼</div>
                                     </div>
                                 </div>
