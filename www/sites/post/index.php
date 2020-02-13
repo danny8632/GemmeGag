@@ -16,6 +16,9 @@ class Post Extends Sites {
     function __construct() {
 
         parent::__construct($this->includeFiles);
+
+
+        echo '<div class="'. $_GET['id'] . '"></div>';
     }
 
 }
