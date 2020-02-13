@@ -49,6 +49,7 @@
                 {
                     echo '<div class="login">
                             <a href="/api_v1/user?method=logout" class="loginButton">Logout</a>
+                            <a href="/upload" class="loginButton">Make Post</a>
                         </div>';
                 }
                 else
