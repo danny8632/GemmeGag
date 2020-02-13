@@ -4,6 +4,8 @@ $( document ).ready(function() {
 
     var html = "";
 
+    var filePath;
+
     data = {
         "post_id": post_id
     };
@@ -25,11 +27,12 @@ $( document ).ready(function() {
         return roundedDown;
     }
 
-
     function run() {
         getPost(() => {
 
             $(".wrapper").html('').append(html);
+
+            $(".wrapper").find(".imgCon").append(getPostType(filePath))
 
             getComment(() => {
 
@@ -50,7 +53,6 @@ $( document ).ready(function() {
 
     }
 
-
     function getPost(callback) {
         
         $.ajax({
@@ -61,6 +63,8 @@ $( document ).ready(function() {
             success: function (post_data) {
     
                 var post = JSON.parse(post_data)[0]
+
+                filePath = post.file;
     
                 console.log(post)
                 var timeSincePost = getHoursSince(post.created);
@@ -79,7 +83,7 @@ $( document ).ready(function() {
                         </div>
         
                         <div class="imgCon">
-                            <img class="postImage" src="${post.file}">
+                            
                         </div>
         
                         <div class="descriptionCon">
@@ -134,8 +138,6 @@ $( document ).ready(function() {
         });
     }
     
-
-
     function getComment(callback) {
     
         $.ajax({
@@ -185,7 +187,6 @@ $( document ).ready(function() {
         });
     }
 
-
     function uploadComment(e) {
 
         e.preventDefault();
@@ -220,6 +221,40 @@ $( document ).ready(function() {
             }
         });
         
+    }
+
+    function getPostType(filePath)
+    {
+        var file_html = ``
+        fileExtension = filePath.substr(filePath.lastIndexOf('.') + 1)
+
+        switch (fileExtension)
+        {
+            case 'mp4':
+                file_html = `
+                <div class="imgCon">
+                    <video class="postImage" controls>
+                        <source src="${filePath}" type="video/mp4">
+                    </video>
+                </div>
+                `
+                break
+            case 'mp3':
+
+                file_html = `
+                <div class="imgCon">
+                    <video class="postImage" controls>
+                        <source src="${filePath}" type="video/mp4">
+                    </video>
+                </div>
+                `
+                break
+            default:
+                file_html = `<img class="postImage" src="${filePath}">`
+                break
+        }
+        
+        return file_html
     }
 
     run();
