@@ -12,14 +12,11 @@ $( document ).ready(function() {
 
             for (var i = 0; i < response.length; ++i) {
                 var post = response[i];
-                var totalvotes = post.UpVotes - post.DownVotes
-                //console.log(post)
-                
-                // Html til hver post bliver genereret
-                var fileHtml = getPostType(post.file);
-                console.log(fileHtml);
-
                 var timeSincePost = getHoursSince(post.created);
+
+                var fileHtml = getPostType(post.file);
+                var imgConId = `postMedia${i+1}`
+
                 var html = `
                     <div class="postCon">
                         <div class="titleCon">
@@ -33,7 +30,7 @@ $( document ).ready(function() {
                             </div>
                         </div>
         
-                        <div class="imgCon">
+                        <div class="imgCon" id="${imgConId}">
                             
                         </div>
         
@@ -45,7 +42,7 @@ $( document ).ready(function() {
                             <div class="voteCon">
                                 <div class="voteCon2">
                                     <div class="upvote votebtn" data-post_id="${post.id}" data-vote="Upvote">▲</div>
-                                    <div class="totalVotes">${totalvotes}</div>
+                                    <div class="totalVotes">${post.TotalVotes == null ? '0' : post.TotalVotes}</div>
                                     <div class="downvote votebtn" data-post_id="${post.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
@@ -63,15 +60,10 @@ $( document ).ready(function() {
                 
                 $("#posts").append(html);
 
-                // Fordi der bliver genereret flere imgCon div's, ved den ikke hvilken div der skal appendes til
-                // Så måske noget med id? Prøvede hurtigt men det virkede ikke
-                $(".imgCon").append(fileHtml);
+                $(".imgCon#" + imgConId).append(fileHtml);
             }
-
-            
             
             $('#posts').find('.votebtn').on('click', (e) => vote($(e.target).data()))
-            
 
         },
         error: function (e) {
