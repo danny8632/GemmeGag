@@ -98,7 +98,7 @@ docker-compose build
 
 2. If you have trouble with importing the data-base through phpMyAdmin you can try this command:
 ```sh
-docker exec -i gemmegag_db_1 sh -c 'exec mysql -uroot -p"ROOT-Password"' < /path/to/sql/file
+docker exec -i db sh -c 'exec mysql -uroot -p"ROOT-Password"' < /path/to/sql/file
 ```
 
 
