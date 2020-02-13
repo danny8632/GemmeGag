@@ -8,9 +8,11 @@
     width: 500px;
 }
 
-#canvas {
-    width: 200px;
-    height: 200px;
+#img {
+    display: none;
+    border: 6px solid gray;
+    border-radius: 5px;
+    width: 80%;
 }
 
 #uploadSite .content .uploadPost input {
