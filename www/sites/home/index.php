@@ -8,10 +8,14 @@ class Home Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "/sites/home/css/home.css"
+            "/sites/home/css/home.css", 
+            "/sites/home/css/post.css"
         ),
         "html" => array(
             "home/html/home.html"
+        ),
+        "js" => array(
+            "/sites/home/javascript/home.js"
         )
     );
 
