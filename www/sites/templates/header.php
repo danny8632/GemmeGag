@@ -16,9 +16,17 @@
 
             foreach ($this->includeArr as $type => $val) {
                 if($type == 'css')
-                    echo '<link rel="stylesheet" type="text/css" href="'.$val[0].'">';
+                {
+                    foreach ($val as $data) {
+                        echo '<link rel="stylesheet" type="text/css" href="'.$data.'">';
+                    }
+                }
                 else if($type == 'js')
-                    echo '<script type="text/javascript" src="'.$val[0].'"></script>';
+                {
+                    foreach ($val as $data) {
+                        echo '<script type="text/javascript" src="'.$data.'"></script>';
+                    }
+                }
             }
         ?>
 
