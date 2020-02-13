@@ -103,16 +103,29 @@
 
 /*Comments container*/
 .commentsCon {
+    display: none;
     background-color: #333333;
     border: solid 10px #262626;
 }
-.comment {
+.comment, .newCommentCon {
     border-top: solid 2px #404040;
     padding: 5px;
 }
 .commentHead {
     display: flex;
     margin-bottom: 8px;
+}
+.newCommentForm {
+    width: 100%;
+}
+.newCommentText {
+    resize: none;
+    width: 100%;
+}
+.newCommentHeadText {
+    text-decoration-line: none;
+    font-family: 'Roboto', sans-serif;
+    color: white;
 }
 .commentHeadText {
     text-decoration-line: none;
