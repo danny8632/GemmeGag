@@ -15,8 +15,10 @@ $( document ).ready(function() {
                 var totalvotes = post.UpVotes - post.DownVotes
                 //console.log(post)
                 
-                var filePath = post.file;
-                
+                // Html til hver post bliver genereret
+                var fileHtml = getPostType(post.file);
+                console.log(fileHtml);
+
                 var timeSincePost = getHoursSince(post.created);
                 var html = `
                     <div class="postCon">
@@ -58,13 +60,18 @@ $( document ).ready(function() {
                         </div>
                     </div>
                 `
+                
                 $("#posts").append(html);
+
+                // Fordi der bliver genereret flere imgCon div's, ved den ikke hvilken div der skal appendes til
+                // Så måske noget med id? Prøvede hurtigt men det virkede ikke
+                $(".imgCon").append(fileHtml);
             }
 
-            $(".imgCon").append(getPostType(filePath));
-
+            
+            
             $('#posts').find('.votebtn').on('click', (e) => vote($(e.target).data()))
-        
+            
 
         },
         error: function (e) {
