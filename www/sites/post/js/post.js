@@ -82,7 +82,7 @@ $( document ).ready(function() {
                                 <div class="commentFoot">
                                     <div class="commentVotes">
                                         <div class="commentUpvote">▲</div>
-                                        <div class="commentTotalVotes">${comment.UpVotes - comment.DownVotes}</div>
+                                        <div class="commentTotalVotes">${comment.TotalVotes}</div>
                                         <div class="commentDownvote">▼</div>
                                     </div>
                                 </div>
