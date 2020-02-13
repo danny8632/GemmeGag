@@ -58,9 +58,9 @@ $( document ).ready(function() {
                         <div class="toolbarCon">
                             <div class="voteCon">
                                 <div class="voteCon2">
-                                    <div class="upvote">▲</div>
+                                    <div class="upvote votebtn" data-post_id="${post.id}" data-vote="Upvote">▲</div>
                                     <div class="totalVotes">${totalvotes}</div>
-                                    <div class="downvote">▼</div>
+                                    <div class="downvote votebtn" data-post_id="${post.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
         
@@ -76,6 +76,31 @@ $( document ).ready(function() {
                 `
                 $("#posts").append(html);
             }
+
+
+            $('#posts').find('.votebtn').on('click', (e) => {
+                
+
+                var data = $(e.target).data()
+
+                console.log(data)
+
+                $.ajax({
+                    type: "POST",
+                    url: "/api_v1/vote",
+                    data: data,
+                    timeout: 600000,
+                    success: function (data) {
+                        console.log("SUCCESS : ", data);
+        
+                    },
+                    error: function (e) {
+        
+                        console.log("ERROR : ", e);
+        
+                    }
+                });
+            })
         
 
         },
