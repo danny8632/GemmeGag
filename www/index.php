@@ -114,6 +114,14 @@ else
             new Post();
     
             break;
+
+        case 'comment' :
+
+            require __DIR__ . '/sites/comment/index.php';
+
+            new Comment();
+
+            break;
         default:
     
             require __DIR__ . '/404.php';
