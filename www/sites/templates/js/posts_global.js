@@ -15,4 +15,4 @@ $( document ).ready(function() {
     
         return roundedDown;
     }
-}
+});

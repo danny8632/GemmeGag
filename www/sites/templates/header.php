@@ -1,5 +1,4 @@
 <?php
-    #include 'js/posts_global.js';
     session_start();
 ?>
 
