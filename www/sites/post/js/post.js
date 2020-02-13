@@ -35,53 +35,21 @@ $( document ).ready(function() {
 
             getComment(() => {
 
-                $('.commentButtonCon').find('.commentButton').on('click', (e) => {
-                    $('#comments').toggle();
-                })
-
-
-                var commentForm = $('#comments').find('.newCommentForm');
-
-                commentForm.on('submit', (e) => {
-
-                    e.preventDefault();
-
-                    var data = commentForm.serializeArray()[0];
-
-                    if(data.value == "")
-                        return true;
-
-                    var data = {
-                        'post_id' : post_id,
-                        'text' : data.value
-                    }
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/api_v1/comment",
-                        data: data,
-                        timeout: 600000,
-                        success: function (resp_data) {
-
-                            //console.log(resp_data)
-                            getComment(() => {
-                                $('#comments').show();
-                            });
-                        
-                        },
-                        error: function (e) {
-
-                            console.log("ERROR : ", e);
-                
-                        }
-                    });
-                    console.log(data)
-
-                })
+                bindEventHandlers();
 
             })
 
         })
+    }
+
+    function bindEventHandlers() {
+
+        $('.commentButtonCon').find('.commentButton').on('click', (e) => {
+            $('#comments').toggle();
+        })
+
+        $('#comments').find('.newCommentForm').on('submit', (e) => uploadComment(e))
+
     }
 
 
@@ -222,6 +190,41 @@ $( document ).ready(function() {
         });
     }
 
+
+    function uploadComment(e) {
+
+        e.preventDefault();
+
+        var data = $('#comments').find('.newCommentForm').serializeArray()[0];
+
+        if(data.value == "")
+            return true;
+
+        var data = {
+            'post_id' : post_id,
+            'text' : data.value
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/api_v1/comment",
+            data: data,
+            timeout: 600000,
+            success: function (resp_data) {
+
+                //console.log(resp_data)
+                getComment(() => {
+                    $('#comments').show();
+                });
+            
+            },
+            error: function (e) {
+
+                console.log("ERROR : ", e);
+    
+            }
+        });
+    }
 
     run();
 });
