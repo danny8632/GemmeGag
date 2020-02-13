@@ -26,6 +26,18 @@
     font-weight: bold;
 }
 
+#uploadSite .content .uploadPost textarea {
+    width: 80%;
+    margin: 0px;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: content-box;
+    color: black;
+    font-weight: bold;
+    resize: none;
+}
+
 #uploadSite .content .uploadPost input[name="submit"]:hover {
     background-color: gray;
 }
