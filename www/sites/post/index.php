@@ -10,6 +10,9 @@ class Post Extends Sites {
         ),
         "html" => array(
             "post/html/post.html"
+        ),
+        "js" => array(
+            "/sites/post/js/post.js"
         )
     );
 
