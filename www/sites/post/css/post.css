@@ -48,6 +48,7 @@
     min-width: 60%;
 }
 
+
 /*Description container*/
 .descriptionCon {
     padding: 8px;
@@ -169,4 +170,13 @@
     color: #e6e6e6;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
+}
+
+
+.upduttet {
+    color: #006bb3;
+}
+
+.downduttet {
+    color: #ff3300;
 }

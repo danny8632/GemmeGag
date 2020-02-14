@@ -161,15 +161,13 @@ $( document ).ready(function() {
 
 
                 $('.wrapper').find('.votebtn').on('click', (e) =>  {
+
+
+                    console.log($(e.target).data())
+
                     vote($(e.target).data(), (req_data) => {
-
                         $(e.target).parent().children(":not(.votebtn)").html(req_data[0].TotalVotes == null ? '0' : req_data[0].TotalVotes)
-
-                        console.log(req_data)
                     });
-
-
-                    
                 });
                 
                 callback();

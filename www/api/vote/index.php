@@ -58,7 +58,8 @@ class Vote extends Api {
         {
             echo json_encode(array(
                 "success" => false,
-                "message" => "Post or comment-id or text wasen't specified"
+                "message" => "Post or comment-id or text wasen't specified",
+                "req" => json_encode($req)
             ));
             return true;
         }

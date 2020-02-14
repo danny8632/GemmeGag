@@ -9,6 +9,8 @@ function vote(data, cb)
             //console.log("SUCCESS : ", data);
             var req_data = JSON.parse(data)
 
+            console.log(req_data)
+
             cb(req_data);
         },
         error: function (e) {

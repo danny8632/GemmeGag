@@ -60,10 +60,20 @@ $( document ).ready(function() {
                 
                 $("#posts").append(html);
 
-                $(".imgCon#" + imgConId).append(fileHtml);
+                $(".imgCon#" + imgConId).append(fileHtml);   
             }
             
-            $('#posts').find('.votebtn').on('click', (e) => vote($(e.target).data()))
+            $('#posts').find('.votebtn').on('click', (e) =>  {
+
+                console.log($(e.target).data())
+
+                vote($(e.target).data(), (req_data) => {
+                    $(e.target).parent().children(":not(.votebtn)").html(req_data[0].TotalVotes == null ? '0' : req_data[0].TotalVotes)
+                });
+            });
+
+
+            //$('#posts').find('.votebtn').on('click', (e) => vote($(e.target).data()))
 
         },
         error: function (e) {
