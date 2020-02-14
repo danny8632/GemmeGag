@@ -19,6 +19,7 @@ class Vote extends Api {
         $id;
         $table = [];
         $upVote;
+        $redirect;
 
         if(isset($this->getRequest()[1]))
             $req = $this->getRequest()[1];
@@ -40,12 +41,14 @@ class Vote extends Api {
                 $id = $req['post_id'];
                 $table['table'] = "postvotes";
                 $table['select'] = "postID";
+                $redirect = "post";
             }
             if(isset($req['comment_id'])) 
             { 
                 $id = $req['comment_id'];
                 $table['table'] = "commentvotes";
                 $table['select'] = "commentID";
+                $redirect = "comment";
             }
             if(isset($req['vote'])) $upVote = $req['vote'];
 
@@ -97,7 +100,8 @@ class Vote extends Api {
                 echo "WONG";
             }
         }
-        
+
+        header("Location: /api_v1/$redirect?id=".$id);
     }
 
 }

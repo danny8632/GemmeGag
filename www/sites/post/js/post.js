@@ -34,7 +34,6 @@ $( document ).ready(function() {
 
         $('#comments').find('.newCommentForm').on('submit', (e) => uploadComment(e));
 
-        $('.wrapper').find('.votebtn').on('click', (e) => vote($(e.target).data()))
 
     }
 
@@ -79,7 +78,7 @@ $( document ).ready(function() {
                             <div class="voteCon">
                                 <div class="voteCon2">
                                     <div class="upvote votebtn" data-post_id="${post.id}" data-vote="Upvote">▲</div>
-                                    <div class="totalVotes">${post.totalvotes == null ? '0' : post.totalvotes}</div>
+                                    <div class="totalVotes">${post.TotalVotes == null ? '0' : post.TotalVotes}</div>
                                     <div class="downvote votebtn" data-post_id="${post.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
@@ -159,6 +158,19 @@ $( document ).ready(function() {
                 $("#comments").find('.comment').remove();
 
                 $("#comments").append(comment_html)
+
+
+                $('.wrapper').find('.votebtn').on('click', (e) =>  {
+                    vote($(e.target).data(), (req_data) => {
+
+                        $(e.target).parent().children(":not(.votebtn)").html(req_data[0].TotalVotes == null ? '0' : req_data[0].TotalVotes)
+
+                        console.log(req_data)
+                    });
+
+
+                    
+                });
                 
                 callback();
 
@@ -196,6 +208,7 @@ $( document ).ready(function() {
                 //console.log(resp_data)
                 getComment(() => {
                     $('#comments').find('.newCommentForm').find('textarea.newCommentText').val('');
+                    
                 });
             
             },

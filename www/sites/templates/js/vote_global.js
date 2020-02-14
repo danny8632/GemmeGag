@@ -1,4 +1,4 @@
-function vote(data)
+function vote(data, cb)
 {
     $.ajax({
         type: "POST",
@@ -6,7 +6,10 @@ function vote(data)
         data: data,
         timeout: 600000,
         success: function (data) {
-            console.log("SUCCESS : ", data);
+            //console.log("SUCCESS : ", data);
+            var req_data = JSON.parse(data)
+
+            cb(req_data);
         },
         error: function (e) {
 
