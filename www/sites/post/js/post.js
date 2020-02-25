@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
     var post_id = $('.wrapper').data('post-id')
 
@@ -38,21 +38,21 @@ $( document ).ready(function() {
     }
 
     function getPost(callback) {
-        
+
         $.ajax({
             type: "GET",
             url: "/api_v1/post",
             data: data,
             timeout: 600000,
             success: function (post_data) {
-    
+
                 var post = JSON.parse(post_data)[0]
 
                 filePath = post.file;
-    
+
                 console.log(post)
-                var timeSincePost = getHoursSince(post.created);
-    
+                var timeSincePost = getTimeSince(post.created);
+
                 html = `
                     <div class="postCon">
                         <div class="titleCon">
@@ -62,7 +62,7 @@ $( document ).ready(function() {
         
                             <div class="opCon">
                                 <p class="opText">Posted by: <a href="/user?id=${post.userID}">${post.username}</a></p>
-                                <p class="timePosted">${timeSincePost} hour(s) ago</p>
+                                <p class="timePosted">${timeSincePost}</p>
                             </div>
                         </div>
         
@@ -77,9 +77,9 @@ $( document ).ready(function() {
                         <div class="toolbarCon">
                             <div class="voteCon">
                                 <div class="voteCon2">
-                                    <div class="upvote votebtn ${(post.your_vote != null && post.your_vote == "Upvote")?"upduttet":''}" data-post_id="${post.id}" data-vote="Upvote">▲</div>
+                                    <div class="upvote votebtn ${(post.your_vote != null && post.your_vote == "Upvote") ? "upduttet" : ''}" data-post_id="${post.id}" data-vote="Upvote">▲</div>
                                     <div class="totalVotes">${post.TotalVotes == null ? '0' : post.TotalVotes}</div>
-                                    <div class="downvote votebtn ${(post.your_vote != null && post.your_vote == "Downvote")?"downduttet":''}" data-post_id="${post.id}" data-vote="Downvote">▼</div>
+                                    <div class="downvote votebtn ${(post.your_vote != null && post.your_vote == "Downvote") ? "downduttet" : ''}" data-post_id="${post.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
         
@@ -110,20 +110,20 @@ $( document ).ready(function() {
 
                     </div>
                 `;
-                
+
                 callback();
-                
+
             },
             error: function (e) {
-    
+
                 console.log("ERROR : ", e);
-    
+
             }
         });
     }
-    
+
     function getComment(callback) {
-    
+
         $.ajax({
             type: "GET",
             url: "/api_v1/comment",
@@ -133,34 +133,34 @@ $( document ).ready(function() {
                 var comments = JSON.parse(data)
 
                 var comment_html = '';
-                
+
                 comments.forEach(comment => {
-                    var timeSincePost = getHoursSince(comment.created);
+                    var timeSincePost = getTimeSince(comment.created);
                     comment_html += `
                         <div class="comment">
                             <div class="commentHead">
                                 <a class="commentHeadText" href="#">${comment.username}</a>
-                                <div class="commentTimePosted">${timeSincePost}h</div>
+                                <div class="commentTimePosted">${timeSincePost}</div>
                             </div>
                             <div class="commentBody">
                                 <p class="commentText">${comment.text}</p>
                             </div>
                             <div class="commentFoot">
                                 <div class="commentVotes">
-                                    <div class="upvote votebtn ${(comment.your_vote != null && comment.your_vote == "Upvote")?"upduttet":''}" data-comment_id="${comment.id}" data-vote="Upvote">▲</div>
+                                    <div class="upvote votebtn ${(comment.your_vote != null && comment.your_vote == "Upvote") ? "upduttet" : ''}" data-comment_id="${comment.id}" data-vote="Upvote">▲</div>
                                     <div class="commentTotalVotes">${comment.TotalVotes == null ? '0' : comment.TotalVotes}</div>
-                                    <div class="downvote votebtn ${(comment.your_vote != null && comment.your_vote == "Downvote")?"downduttet":''}" data-comment_id="${comment.id}" data-vote="Downvote">▼</div>
+                                    <div class="downvote votebtn ${(comment.your_vote != null && comment.your_vote == "Downvote") ? "downduttet" : ''}" data-comment_id="${comment.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
                         </div>`
                 });
-                
+
                 $("#comments").find('.comment').remove();
 
                 $("#comments").append(comment_html)
 
 
-                $('.wrapper').find('.votebtn').on('click', (e) =>  {
+                $('.wrapper').find('.votebtn').on('click', (e) => {
 
                     vote($(e.target).data(), (req_data) => {
 
@@ -168,17 +168,15 @@ $( document ).ready(function() {
 
                         $(e.target).removeClass('upduttet downduttet').siblings('.votebtn').removeClass('upduttet downduttet');
 
-                        if(req_data[0].your_vote == "Downvote")
-                        {
+                        if (req_data[0].your_vote == "Downvote") {
                             $(e.target).parent().children(".downvote").toggleClass("downduttet", true)
                         }
-                        else if(req_data[0].your_vote == "Upvote")
-                        {
+                        else if (req_data[0].your_vote == "Upvote") {
                             $(e.target).parent().children(".upvote").toggleClass("upduttet", true)
                         }
                     });
                 });
-                
+
                 callback();
 
 
@@ -186,7 +184,7 @@ $( document ).ready(function() {
             error: function (e) {
 
                 console.log("ERROR : ", e);
-    
+
             }
         });
     }
@@ -194,15 +192,15 @@ $( document ).ready(function() {
     function uploadComment(e) {
 
         e.preventDefault();
-            
+
         var data = $('#comments').find('.newCommentForm').serializeArray()[0];
 
-        if(data.value == "")
+        if (data.value == "")
             return true;
 
         var data = {
-            'post_id' : post_id,
-            'text' : data.value
+            'post_id': post_id,
+            'text': data.value
         }
 
         $.ajax({
@@ -215,17 +213,17 @@ $( document ).ready(function() {
                 //console.log(resp_data)
                 getComment(() => {
                     $('#comments').find('.newCommentForm').find('textarea.newCommentText').val('');
-                    
+
                 });
-            
+
             },
             error: function (e) {
 
                 console.log("ERROR : ", e);
-    
+
             }
         });
-        
+
     }
 
     run();

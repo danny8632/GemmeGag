@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
     $.ajax({
         type: "GET",
@@ -7,15 +7,15 @@ $( document ).ready(function() {
         success: function (data) {
 
             var response = JSON.parse(data)
-            
+
             console.log(response)
 
             for (var i = 0; i < response.length; ++i) {
                 var post = response[i];
-                var timeSincePost = getHoursSince(post.created);
+                var timeSincePost = getTimeSince(post.created);
 
                 var fileHtml = getPostType(post.file);
-                var imgConId = `postMedia${i+1}`
+                var imgConId = `postMedia${i + 1}`
 
                 var html = `
                     <div class="postCon">
@@ -26,7 +26,7 @@ $( document ).ready(function() {
         
                             <div class="opCon">
                                 <p class="opText">Posted by: <a href="/user?id=${post.userID}">${post.username}</a></p>
-                                <p class="timePosted">${timeSincePost} hour(s) ago</p>
+                                <p class="timePosted">${timeSincePost}</p>
                             </div>
                         </div>
         
@@ -41,9 +41,9 @@ $( document ).ready(function() {
                         <div class="toolbarCon">
                             <div class="voteCon">   
                                 <div class="voteCon2">
-                                <div class="upvote votebtn ${(post.your_vote != null && post.your_vote == "Upvote")?"upduttet":''}" data-post_id="${post.id}" data-vote="Upvote">▲</div>
+                                <div class="upvote votebtn ${(post.your_vote != null && post.your_vote == "Upvote") ? "upduttet" : ''}" data-post_id="${post.id}" data-vote="Upvote">▲</div>
                                 <div class="totalVotes">${post.TotalVotes == null ? '0' : post.TotalVotes}</div>
-                                <div class="downvote votebtn ${(post.your_vote != null && post.your_vote == "Downvote")?"downduttet":''}" data-post_id="${post.id}" data-vote="Downvote">▼</div>
+                                <div class="downvote votebtn ${(post.your_vote != null && post.your_vote == "Downvote") ? "downduttet" : ''}" data-post_id="${post.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
         
@@ -57,13 +57,13 @@ $( document ).ready(function() {
                         </div>
                     </div>
                 `
-                
+
                 $("#posts").append(html);
 
-                $(".imgCon#" + imgConId).append(fileHtml);   
+                $(".imgCon#" + imgConId).append(fileHtml);
             }
-            
-            $('#posts').find('.votebtn').on('click', (e) =>  {
+
+            $('#posts').find('.votebtn').on('click', (e) => {
 
                 vote($(e.target).data(), (req_data) => {
 
@@ -71,12 +71,10 @@ $( document ).ready(function() {
 
                     $(e.target).removeClass('upduttet downduttet').siblings('.votebtn').removeClass('upduttet downduttet');
 
-                    if(req_data[0].your_vote == "Downvote")
-                    {
+                    if (req_data[0].your_vote == "Downvote") {
                         $(e.target).parent().children(".downvote").toggleClass("downduttet", true)
                     }
-                    else if(req_data[0].your_vote == "Upvote")
-                    {
+                    else if (req_data[0].your_vote == "Upvote") {
                         $(e.target).parent().children(".upvote").toggleClass("upduttet", true)
                     }
                 });

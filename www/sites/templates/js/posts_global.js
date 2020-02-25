@@ -1,28 +1,48 @@
 
-function getHoursSince(date)
-{
-    var newDate = new Date();
-    var newTime = Date.parse(date);
+function getTimeSince(date) {
+    var dateType = ""
+    var result = ""
+    var newDate = new Date()
+    var newTime = Date.parse(date)
 
-    var currentTime = newDate.getTime();
+    var currentTime = newDate.getTime()
 
-    var diffInMilli = currentTime - newTime;
-    var hoursSince = (((diffInMilli / 1000) / 60) / 60);
+    var diffInMilli = currentTime - newTime
+    var hoursSince = Math.floor((((diffInMilli / 1000) / 60) / 60))
+    hoursSince > 1 ? dateType = "hours" : dateType = "hour"
 
-    console.log(hoursSince);
+    if (hoursSince > 24) {
+        var daysSince = Math.floor(hoursSince / 24)
+        daysSince > 1 ? dateType = "days" : dateType = "day"
+        result = `${daysSince} ${dateType} ago`
 
-    var roundedDown = Math.floor(hoursSince);
+        if (daysSince >= 7) {
+            var weeksSince = Math.floor(daysSince / 7)
+            weeksSince > 1 ? dateType = "weeks" : dateType = "week"
+            result = `${weeksSince} ${dateType} ago`
 
-    return roundedDown;
+            if (weeksSince >= 4) {
+                var monthsSince = Math.floor(weeksSince / 4)
+                monthsSince > 1 ? dateType = "months" : dateType = "month"
+                result = `${monthsSince} ${dateType} ago`
+
+                if (monthsSince >= 24) {
+                    var yearsSince = Math.floor(monthsSince / 24)
+                    yearsSince > 1 ? dateType = "years" : dateType = "year"
+                    result = `${yearsSince} ${dateType} ago`
+                }
+            }
+        }
+    }
+
+    return result
 }
 
-function getPostType(filePath)
-{
+function getPostType(filePath) {
     var file_html = ``
     fileExtension = filePath.substr(filePath.lastIndexOf('.') + 1)
 
-    switch (fileExtension)
-    {
+    switch (fileExtension) {
         case 'mp4':
             file_html = `
             <div class="imgCon">
@@ -46,7 +66,7 @@ function getPostType(filePath)
             file_html = `<img class="postImage" src="${filePath}">`
             break
     }
-    
+
     return file_html
 }
 
