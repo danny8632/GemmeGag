@@ -155,6 +155,14 @@ else
 
             break;
 
+        case 'usersettings':
+
+            require __DIR__ . '/sites/usersettings/index.php';
+
+            new UserSettings();
+
+            break;
+
         default:
     
             require __DIR__ . '/404.php';
