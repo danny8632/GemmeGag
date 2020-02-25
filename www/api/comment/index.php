@@ -78,7 +78,7 @@ class Comment extends Api {
 
         foreach ($result as $comment) 
         {
-            $updut;
+            $updut = array();
             if(isset($_SESSION["user_id"]))
             {
                 $stmt = $this->conn->prepare("SELECT * FROM `commentvotes` WHERE `userID` = :id AND `commentID` = :commentid ");
