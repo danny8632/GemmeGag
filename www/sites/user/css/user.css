@@ -1,0 +1,20 @@
+.userHeader {
+    display: flex;
+    width: 100%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-bottom: 3px solid #666666;
+}
+.pofileImgCon {
+    margin:
+}
+.username {
+    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #e6e6e6;
+}
+.upvotedButton, .postsButton {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
