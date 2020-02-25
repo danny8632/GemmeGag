@@ -50,7 +50,7 @@ class Post extends Api {
 
         foreach ($result as $post) 
         {
-            $updut;
+            $updut = array();
             if(isset($_SESSION["user_id"]))
             {
                 $stmt = $this->conn->prepare("SELECT * FROM `postvotes` WHERE `userID` = :id AND `postID` = :postid ");
