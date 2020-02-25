@@ -12,10 +12,12 @@
         <link rel="stylesheet" type="text/css" href="/sites/templates/css/fontsRoboto.css">
         <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">   -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+        <script type="text/javascript" src="sites/templates/js/fontAwesome.js" defer></script>
         <script type="text/javascript" src="sites/templates/js/jquery.min.js"></script>
         <script type="text/javascript" src="sites/templates/js/posts_global.js"></script>
         <script type="text/javascript" src="sites/templates/js/vote_global.js"></script>
 
+        
         <?php
 
             foreach ($this->includeArr as $type => $val) {
