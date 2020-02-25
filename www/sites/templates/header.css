@@ -58,7 +58,7 @@ body {
 }
 
 .topnav .search input {
-    padding: 8px 16px;
+    padding: 7px 16px;
     margin: 0px;
     margin-left: 10px;
     display: inline-block;
@@ -94,6 +94,7 @@ body {
     border: none;
     outline:none;
     outline: 0 !important;
+    min-width: 120px;
 }
 
 .dropdown .dropbtn:focus {
