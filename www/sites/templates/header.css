@@ -31,9 +31,10 @@ body {
 
 .topnav {
     overflow: hidden;
-    /* background-color: #333; */
-    background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+    /* background-color: #1f6696; */
+    background-image: linear-gradient(260deg, #185177 0%, #9e2a2a 100%);
     margin-bottom: 15px;
+    border-bottom: solid 1px #262626;
 }
 
 .topnav .nav-btn-wrapper {
@@ -79,6 +80,19 @@ overflow: hidden;
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+    border: none;
+    outline:none;
+    outline: 0 !important;
+}
+
+.dropdown .dropbtn:focus {
+    outline: 0 !important;
+    border: 0;
+}
+
+.dropdown .dropbtn::-moz-focus-inner {
+    outline: 0 !important;
+    border: 0;
 }
 
 .dropdown-content {
@@ -100,7 +114,7 @@ overflow: hidden;
 }
 
 .topnav a:hover, .dropdown:hover .dropbtn {
-    background-color: #555;
+    background-color: rgba(255, 255, 255, 0.082);
     color: white;
 }
 
