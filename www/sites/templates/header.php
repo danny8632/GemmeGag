@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/sites/templates/css/fontsRoboto.css">
         <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">   -->
         <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+        <script type="text/javascript" src="sites/templates/js/navbar.js" defer></script>
         <script type="text/javascript" src="sites/templates/js/fontAwesome.js" defer></script>
         <script type="text/javascript" src="sites/templates/js/jquery.min.js"></script>
         <script type="text/javascript" src="sites/templates/js/posts_global.js"></script>
@@ -40,6 +41,31 @@
     </head>
 
     <body>
+
+    <div class="topnav" id="myTopnav">
+        <a href="#home">Home</a>
+        <a href="#news" class="active">News</a>
+        <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown 
+            <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+            </div>
+        </div> 
+        <a href="#about">About</a>
+        <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+
+
+
+
+
+    <!--
         <div class="header">
             <div class="logo">
                 <a class="logotext" href="/home" >GemGag</a>
@@ -50,7 +76,7 @@
                 </form>
             </div>
             <?php
-
+                /*
                 if(isset($_SESSION['user_id']))
                 {
                     echo '<div class="login">
@@ -64,6 +90,6 @@
                             <a href="/login" class="loginButton">Login</a>
                         </div>';
                 }
-
+                */
             ?>
-        </div>
+        </div>-->
