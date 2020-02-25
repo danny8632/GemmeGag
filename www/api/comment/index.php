@@ -74,7 +74,33 @@ class Comment extends Api {
 
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        echo json_encode($result);
+        $data = array();
+
+        foreach ($result as $comment) 
+        {
+            $updut;
+            if(isset($_SESSION["user_id"]))
+            {
+                $stmt = $this->conn->prepare("SELECT * FROM `commentvotes` WHERE `userID` = :id AND `commentID` = :commentid ");
+                $stmt->bindParam(":id", $_SESSION["user_id"]);
+                $stmt->bindParam(":commentid", $comment['id']);
+                $stmt->execute();
+                $updut = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            }
+
+            if($updut == null || empty($updut) || !isset($updut) || !isset($_SESSION["user_id"]))
+            {
+                $comment['your_vote'] = null;
+            }
+            else
+            {
+                $comment['your_vote'] = $updut[0]['vote'];
+            }
+
+            $data[] = $comment;
+        }
+
+        echo json_encode($data);
     }
 
 

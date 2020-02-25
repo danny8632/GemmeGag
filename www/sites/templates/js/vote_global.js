@@ -6,7 +6,6 @@ function vote(data, cb)
         data: data,
         timeout: 600000,
         success: function (data) {
-            //console.log("SUCCESS : ", data);
             var req_data = JSON.parse(data)
 
             console.log(req_data)

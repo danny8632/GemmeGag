@@ -41,9 +41,9 @@ $( document ).ready(function() {
                         <div class="toolbarCon">
                             <div class="voteCon">   
                                 <div class="voteCon2">
-                                    <div class="upvote votebtn" data-post_id="${post.id}" data-vote="Upvote">▲</div>
-                                    <div class="totalVotes">${post.TotalVotes == null ? '0' : post.TotalVotes}</div>
-                                    <div class="downvote votebtn" data-post_id="${post.id}" data-vote="Downvote">▼</div>
+                                <div class="upvote votebtn ${(post.your_vote != null && post.your_vote == "Upvote")?"upduttet":''}" data-post_id="${post.id}" data-vote="Upvote">▲</div>
+                                <div class="totalVotes">${post.TotalVotes == null ? '0' : post.TotalVotes}</div>
+                                <div class="downvote votebtn ${(post.your_vote != null && post.your_vote == "Downvote")?"downduttet":''}" data-post_id="${post.id}" data-vote="Downvote">▼</div>
                                 </div>
                             </div>
         
@@ -65,10 +65,20 @@ $( document ).ready(function() {
             
             $('#posts').find('.votebtn').on('click', (e) =>  {
 
-                console.log($(e.target).data())
-
                 vote($(e.target).data(), (req_data) => {
+
                     $(e.target).parent().children(":not(.votebtn)").html(req_data[0].TotalVotes == null ? '0' : req_data[0].TotalVotes)
+
+                    $(e.target).removeClass('upduttet downduttet').siblings('.votebtn').removeClass('upduttet downduttet');
+
+                    if(req_data[0].your_vote == "Downvote")
+                    {
+                        $(e.target).parent().children(".downvote").toggleClass("downduttet", true)
+                    }
+                    else if(req_data[0].your_vote == "Upvote")
+                    {
+                        $(e.target).parent().children(".upvote").toggleClass("upduttet", true)
+                    }
                 });
             });
 

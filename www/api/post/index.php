@@ -46,7 +46,33 @@ class Post extends Api {
 
         $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        echo json_encode($result);
+        $data = array();
+
+        foreach ($result as $post) 
+        {
+            $updut;
+            if(isset($_SESSION["user_id"]))
+            {
+                $stmt = $this->conn->prepare("SELECT * FROM `postvotes` WHERE `userID` = :id AND `postID` = :postid ");
+                $stmt->bindParam(":id", $_SESSION["user_id"]);
+                $stmt->bindParam(":postid", $post['id']);
+                $stmt->execute();
+                $updut = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            }
+
+            if($updut == null || empty($updut) || !isset($updut) || !isset($_SESSION["user_id"]))
+            {
+                $post['your_vote'] = null;
+            }
+            else
+            {
+                $post['your_vote'] = $updut[0]['vote'];
+            }
+
+            $data[] = $post;
+        }
+
+        echo json_encode($data);
     }
 
     
