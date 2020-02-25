@@ -35,6 +35,10 @@ body {
     margin-bottom: 15px;
 }
 
+.topnav .nav-btn-wrapper {
+    float: right;
+}
+
 .topnav a {
     float: left;
     display: block;
@@ -98,18 +102,25 @@ overflow: hidden;
     color: black;
 }
 
-.dropdown:hover .dropdown-content {
+/* .dropdown:hover .dropdown-content {
+    display: block;
+} */
+
+.dropdown-content.shownen {
     display: block;
 }
 
 @media screen and (max-width: 600px) {
-.topnav a:not(:first-child), .dropdown .dropbtn {
-    display: none;
-}
-.topnav a.icon {
-    float: right;
-    display: block;
-}
+    .topnav a:not(:first-child), .dropdown .dropbtn {
+        display: none;
+    }
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+    .topnav .nav-btn-wrapper {
+        float: none;
+    }
 }
   
 @media screen and (max-width: 600px) {
