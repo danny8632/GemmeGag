@@ -18,15 +18,6 @@ $(document).ready(function () {
                 var imgConId = `postMedia${i + 1}`
 
                 var html = `
-                    <div class="postSelect">
-                        <ul>
-                            <li>
-                                <a href="/trending">Trending</a>
-                                <a href="/top">Top</a>
-                                <a href="/home">New</a>
-                            </li>
-                        </ul>
-                    </div>
                     <div class="postCon">
                         <div class="titleCon">
                             <div class="titleTextCon">
