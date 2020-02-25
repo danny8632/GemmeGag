@@ -147,6 +147,14 @@ else
 
             break;
 
+        case 'top':
+
+            require __DIR__ . '/sites/top/index.php';
+
+            new Top();
+
+            break;
+
         default:
     
             require __DIR__ . '/404.php';

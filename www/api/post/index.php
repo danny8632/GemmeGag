@@ -135,4 +135,15 @@ class Post extends Api {
 
         echo json_encode($result);
     }
+
+    function getTop()
+    {
+        $this->conn = $this->getDbConn();
+        $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created, SUM(postvotes.vote = 'Upvote' AND postvotes.vote IS NOT NULL) AS 'UpVotes', SUM(postvotes.vote = 'Downvote' AND postvotes.vote IS NOT NULL) AS 'DownVotes', SUM(CASE WHEN postvotes.vote IS NOT NULL THEN IF(postvotes.vote = 'Upvote', 1, -1) END) AS `TotalVotes` FROM posts LEFT JOIN postvotes on posts.id = postvotes.postID LEFT JOIN users on posts.userID = users.id GROUP BY posts.id, postvotes.postID ORDER BY `TotalVotes` DESC LIMIT 10");
+        $stmt->execute();
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($result);
+    }
 }
