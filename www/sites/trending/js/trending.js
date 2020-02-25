@@ -1,9 +1,9 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
     data = {
         "method": "getTrending"
     };
-    
+
     $.ajax({
         type: "GET",
         url: "/api_v1/post",
@@ -12,15 +12,15 @@ $( document ).ready(function() {
         success: function (data) {
             console.log(data)
             var response = JSON.parse(data)
-            
+
             console.log(response)
 
             for (var i = 0; i < response.length; ++i) {
                 var post = response[i];
-                var timeSincePost = getHoursSince(post.created);
-                
+                var timeSincePost = getTimeSince(post.created);
+
                 var fileHtml = getPostType(post.file);
-                var imgConId = `postMedia${i+1}`
+                var imgConId = `postMedia${i + 1}`
 
                 var html = `
                     <div class="postCon">
@@ -62,12 +62,12 @@ $( document ).ready(function() {
                         </div>
                     </div>
                 `
-                
+
                 $("#posts").append(html);
 
                 $(".imgCon#" + imgConId).append(fileHtml);
             }
-            
+
             $('#posts').find('.votebtn').on('click', (e) => vote($(e.target).data()))
 
         },
