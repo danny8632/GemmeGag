@@ -42,7 +42,7 @@
 
     <body>
 
-    <div class="topnav" id="myTopnav">
+    <div class="topnav" id="navbar">
         <a class="logo" href="/home">GemmeGag</a>
         <div class="nav-btn-wrapper">
             <div class="search">
