@@ -41,7 +41,7 @@
     <body>
 
     <div class="topnav" id="navbar">
-        <a class="logo" href="/home">GemmeGag</a>
+        <a class="logo" href="/home"><img src="../../../favicon.ico"></a>
         <div class="nav-btn-wrapper">
             <div class="search">
                 <form>
