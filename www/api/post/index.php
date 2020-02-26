@@ -112,7 +112,7 @@ class Post extends Api {
             $stmt->bindParam(':userID', $_SESSION["user_id"], PDO::PARAM_INT);
             
             if ($stmt->execute()) {
-                echo "Record created";
+                echo json_encode($this->conn->lastInsertId());
             } else {
                 echo "WONG";
             }

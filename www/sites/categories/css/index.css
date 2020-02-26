@@ -10,7 +10,9 @@
 }
 
 #categories .wrapper {
-    width: 80%;
+    /* width: 80%; */
+    min-width: 195px;
+    max-width: 195px;
     margin: auto;
     overflow: hidden;
     display: block;
@@ -23,28 +25,16 @@
     margin-top: 40px;
 }
 
-
-/* #categories .personalSettings {
-    padding: 10px;
-    margin: 20px 10px;
-    background-color: #555555;
-    border-radius: 5px;
-    box-shadow: 3px 3px #333333;
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-} */
-
-#categories .personalSettings {
+#categories .categoriesList {
     min-width: 180px;
     max-width: 180px;
 }
 
-#categories .personalSettings li:hover {
+#categories .categoriesList li:hover {
     background-color: #333333;
 }
 
-#categories .personalSettings li a.label {
+#categories .categoriesList li a.label {
     color: #ffffff;
     font-size: 14px;
     height: 36px;
@@ -61,7 +51,7 @@
     padding-right: 8px;
 }
 
-#categories .personalSettings li a i.thumbnail {
+#categories .categoriesList li a i.thumbnail {
     position: absolute;
     width: 24px;
     height: 24px;
@@ -72,7 +62,7 @@
     margin-top: -12px;
 }
 
-#categories .personalSettings li a i.thumbnail img {    
+#categories .categoriesList li a i.thumbnail img {    
     display: block;
     width: 100%;
     height: 100%;
