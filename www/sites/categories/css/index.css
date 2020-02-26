@@ -45,7 +45,7 @@
 }
 
 #categories .personalSettings li a.label {
-    color: #000;
+    color: #ffffff;
     font-size: 14px;
     height: 36px;
     line-height: 20px;
@@ -72,10 +72,9 @@
     margin-top: -12px;
 }
 
-#categories .personalSettings li a i.thumbnail img {
-    
-display: block;
-width: 100%;
-height: 100%;
+#categories .personalSettings li a i.thumbnail img {    
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
