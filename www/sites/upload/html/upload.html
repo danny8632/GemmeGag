@@ -1,6 +1,6 @@
 <div id="uploadSite">
     <div class="content">
-        <form method="POST" enctype="multipart/form-data" class="uploadPost">
+        <form method="POST" name="uploadPost" enctype="multipart/form-data" class="uploadPost">
 
             <p>Title:</p>
             <input type="text" name="title" id="title" placeholder="Title" required>
@@ -18,9 +18,20 @@
             <img id="img">
 
             <br><br>
-            <input type="submit" value="Upload Image" name="submit">
+            <input id="openModal" type="submit" value="Upload Image" name="submit">
         </form>
     </div>
 </div>
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Post Uploaded</p>
+      <a href="../home"><button>Front page</button></a>
+      <a href="../upload"><button>make new post</button></a>
+    </div>
+  
+  </div>
