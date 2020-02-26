@@ -17,8 +17,12 @@ class User Extends Sites {
     );
 
     function __construct() {
+        
+        $var = null;
+        
+        if (isset($_GET['id'])) $var['id'] = $_GET['id'];
 
-        parent::__construct($this->includeFiles);
+        parent::__construct($this->includeFiles, $var);
     }
 
 }
