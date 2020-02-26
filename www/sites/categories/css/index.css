@@ -10,6 +10,11 @@
 }
 
 #categories .wrapper {
+    width: 80%;
+    margin: auto;
+}
+
+#categories .categoriesListWrapper {
     /* width: 80%; */
     min-width: 195px;
     max-width: 195px;

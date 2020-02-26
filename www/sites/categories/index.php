@@ -6,7 +6,8 @@ class Categories Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "/sites/categories/css/index.css"
+            "/sites/categories/css/index.css",
+            "/sites/categories/css/post.css"
         ),
         "js" => array(
             "/sites/categories/js/index.js"
