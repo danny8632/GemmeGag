@@ -70,6 +70,37 @@ if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api_v1")
 
 
 }
+else if($redirect_exploded[1] != "" && $redirect_exploded[1] == "c")
+{
+    if(empty($redirect_exploded[2]) || !isset($redirect_exploded[2]))
+    {
+        require __DIR__ . '/sites/categories/index.php';
+
+        new Categories();
+
+        return true;
+    }
+
+
+    switch ($redirect_exploded[2]) {
+
+        case 'list' :
+    
+            require __DIR__ . '/sites/categories/index.php';
+
+            new Categories();
+
+            break;
+
+        default:
+    
+            require __DIR__ . '/sites/categories/index.php';
+
+            new Categories($redirect_exploded[2]);
+    
+            break;
+    }
+}
 else
 {
     switch ($redirect_exploded[1]) {
@@ -83,7 +114,6 @@ else
             new Home();
     
             break;
-    
     
         case 'examble' :
     

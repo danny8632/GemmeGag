@@ -10,13 +10,11 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="/sites/templates/header.css">
         <link rel="stylesheet" type="text/css" href="/sites/templates/css/fontsRoboto.css">
-        <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">   -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-        <script type="text/javascript" src="sites/templates/js/navbar.js" defer></script>
-        <script type="text/javascript" src="sites/templates/js/fontAwesome.js" defer></script>
-        <script type="text/javascript" src="sites/templates/js/jquery.min.js"></script>
-        <script type="text/javascript" src="sites/templates/js/posts_global.js"></script>
-        <script type="text/javascript" src="sites/templates/js/vote_global.js"></script>
+        <script type="text/javascript" src="/sites/templates/js/navbar.js" defer></script>
+        <script type="text/javascript" src="/sites/templates/js/fontAwesome.js" defer></script>
+        <script type="text/javascript" src="/sites/templates/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/sites/templates/js/posts_global.js"></script>
+        <script type="text/javascript" src="/sites/templates/js/vote_global.js"></script>
 
         
         <?php
@@ -83,37 +81,3 @@
         </div>
         <a href="javascript:void(0);" style="font-size:17px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
-
-
-
-
-
-
-    <!--
-        <div class="header">
-            <div class="logo">
-                <a class="logotext" href="/home" >GemGag</a>
-            </div>
-            <div class="search">
-                <form>
-                    <input placeholder="Search..." type="text">
-                </form>
-            </div>
-            <?php
-                /*
-                if(isset($_SESSION['user_id']))
-                {
-                    echo '<div class="login">
-                            <a href="/api_v1/user?method=logout" class="loginButton">Logout</a>
-                            <a href="/upload" class="loginButton">Make Post</a>
-                        </div>';
-                }
-                else
-                {
-                    echo '<div class="login">
-                            <a href="/login" class="loginButton">Login</a>
-                        </div>';
-                }
-                */
-            ?>
-        </div>-->

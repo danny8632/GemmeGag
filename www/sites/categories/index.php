@@ -16,9 +16,14 @@ class Categories Extends Sites {
         )
     );
 
-    function __construct() {
+    function __construct($category = null) {
 
-        parent::__construct($this->includeFiles);
+        $extra_data = null;
+
+        if($category != null) $extra_data['categori'] = $category;
+
+        parent::__construct($this->includeFiles, $extra_data);
+        
     }
 
 }

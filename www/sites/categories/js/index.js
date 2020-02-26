@@ -8,26 +8,14 @@ $(document).ready(function () {
 
             var response = JSON.parse(data)
 
-
-/* (2) […]
-​
-0: Object { id: "1", category: "Funny", description: "Dette er rigtig sjovt", … }
-​
-1: Object { id: "2", category: "Dankmark", description: "Fuck svensken", … }
-​
- */
-
-
-
-
             response.forEach(category => {
-                $("#categories").find('.personalSettings').append(
+                $("#categories").find('.categoriesList').append(
                     $('<li>', {
                         class: category.id,
                         html: [
                             $('<a>', {
                                 class: "label",
-                                href: "/categories?id="+category.id,
+                                href: "/c/"+category.category,
                                 html: [
                                     $('<i>', {
                                         class: "thumbnail",
@@ -44,8 +32,6 @@ $(document).ready(function () {
                     })
                 )
             });
-
-            //console.log(response)
 
         },
         error: function (e) {
