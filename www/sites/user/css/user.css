@@ -49,3 +49,41 @@
     color: #e6e6e6;
     font-size: 20px;
 }
+
+/*Post container*/
+.postCon {
+    border: solid 10px #262626;
+}
+
+
+/*Title container*/
+.titleCon {
+    padding: 5px;
+    background-color: #262626;
+}
+.titleText {
+    font-size: 30px;
+    text-decoration-line: none;
+    color: white;
+}
+.opCon {
+    display: flex;
+}
+
+.voteCon {
+    width: 30%;
+    margin: auto;
+}
+.voteCon2 {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+.upvote, .totalVotes, .downvote {
+    display: block;
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}

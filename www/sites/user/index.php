@@ -11,6 +11,9 @@ class User Extends Sites {
         "html" => array(
             "user/html/user.html"
         ),
+        "js" => array(
+            "/sites/user/js/user.js"
+        )
     );
 
     function __construct() {

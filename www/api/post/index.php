@@ -16,6 +16,7 @@ class Post extends Api {
 
     function _GET() 
     {
+        $user_id;
 
         $post_id;
 
@@ -30,12 +31,18 @@ class Post extends Api {
 
             if(isset($req['id'])) $post_id = $req['id'];
             if(isset($req['post_id'])) $post_id = $req['post_id'];
+            if(isset($req['user_id'])) $user_id = $req['user_id'];
         }
 
         if(isset($post_id) && !empty($post_id))
         {
             $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created, SUM(postvotes.vote = 'Upvote' AND postvotes.vote IS NOT NULL) AS 'UpVotes', SUM(postvotes.vote = 'Downvote' AND postvotes.vote IS NOT NULL) AS 'DownVotes', SUM(CASE WHEN postvotes.vote IS NOT NULL THEN IF(postvotes.vote = 'Upvote', 1, -1) END) AS `TotalVotes` FROM posts LEFT JOIN postvotes on posts.id = postvotes.postID LEFT JOIN users on posts.userID = users.id WHERE posts.id = :id GROUP BY posts.id, postvotes.postID");
             $stmt->bindParam(":id", $post_id);
+            $stmt->execute();
+        }
+        else if (isset($post_id) && !empty($user_id)) {
+            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, SUM(postvotes.vote = 'Upvote' AND postvotes.vote IS NOT NULL) AS 'UpVotes', SUM(postvotes.vote = 'Downvote' AND postvotes.vote IS NOT NULL) AS 'DownVotes', SUM(CASE WHEN postvotes.vote IS NOT NULL THEN IF(postvotes.vote = 'Upvote', 1, -1) END) AS `TotalVotes` FROM posts LEFT JOIN postvotes on posts.id = postvotes.postID LEFT JOIN users on posts.userID = users.id WHERE posts.userID = :id GROUP BY posts.id, postvotes.postID");
+            $stmt->bindParam(":id", $user_id);
             $stmt->execute();
         }
         else

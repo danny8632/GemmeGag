@@ -21,15 +21,16 @@ class Comment extends Api {
         $user_id;
         $comment_id;
         
-        $req;
+        $req = $this->getRequest();
 
-        if(isset($this->getRequest()[1]))
-            $req = $this->getRequest()[1];
+        if(isset($req[1]))
+            $req = $req[1];
         else
         {
             echo json_encode(array(
                 "success" => false,
-                "message" => "U need to specify ether user_id or post_id"
+                "message" => "U need to specify ether user_id or post_id",
+                "req" => json_encode($req)
             ));
             return true;
         }
