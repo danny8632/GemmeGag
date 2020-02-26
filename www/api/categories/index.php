@@ -27,7 +27,7 @@ class Categories extends Api {
         {
             $req = $req[1];
             if(isset($req['id'])) $id = $req['id'];
-            if(isset($req['category_id'])) $post_id = $req['category_id'];
+            if(isset($req['category_id'])) $id = $req['category_id'];
             if(isset($req['category'])) $category = $req['category'];
             if(isset($req['name'])) $category = $req['name'];
             if(isset($req['category_name'])) $category = $req['category_name'];
