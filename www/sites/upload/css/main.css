@@ -101,19 +101,47 @@
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: black;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+    background-color: #404040;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    position: relative;
+}
+.modalButton, .postmake {
+    width: 80%;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    background-color: white;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-sizing: content-box;
+}
+
+.modalHeadText {
+    width: -moz-fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.buttonsCon {
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: auto;
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 0%;
+    top: 0;
 }
 
 .close:hover,

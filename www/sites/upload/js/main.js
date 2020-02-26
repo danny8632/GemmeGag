@@ -31,7 +31,7 @@ $( document ).ready(function() {
 
                 console.log(data)
 
-                $('#myModal').find('.modal-content').append(`<a id="postMake" href="/post?id=${data}"><button>go to post</button></a>`)
+                $('#myModal').find('.buttonsCon').append(`<a id="postMake" class="postmake" href="/post?id=${data}">go to post</a>`)
 
             },
             error: function (e) {
