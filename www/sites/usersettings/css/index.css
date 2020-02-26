@@ -1,0 +1,191 @@
+#settingsPage {
+    display: block;
+    margin: 0px 5%;
+}
+
+#settingsPage * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#settingsPage h1 {
+    padding: 10px;
+    font-size: 40px;
+    color: white;
+    border-bottom: 1px solid #ffffff;
+}
+
+#settingsPage h3 {
+    padding-bottom: 6px;
+    font-size: 20px;
+    color: white;
+}
+
+
+#settingsPage .wrapper {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    display: block;
+    /* background-image: linear-gradient(260deg, #185177 0%, #9e2a2a 100%); */
+    background-color: #262626;
+    padding: 6px;
+    border-radius: 5px;
+    box-shadow: 3px 3px #333333;
+    position: relative;
+    margin-top: 40px;
+}
+
+
+#settingsPage .wrapper .save {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color:#4CAF50;
+    border: none;
+    color:white;
+    padding: 10px 14px;
+    font-size: 22px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+#settingsPage .wrapper .save:hover {
+    cursor: pointer;
+    background-color:rgb(92, 209, 96);
+}
+
+
+#settingsPage .profile-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+#settingsPage label {
+    color: white;
+    font-weight: bold;
+}
+
+
+/*------------------------------*/
+/*                              */
+/*      Profile picture         */
+/*                              */
+/*------------------------------*/
+
+#settingsPage .profilePicture {
+    padding: 10px;
+    margin: 20px 10px;
+    max-width: 220px;
+    background-color: #555555;
+    border-radius: 5px;
+    box-shadow: 3px 3px #333333;
+    flex-grow: 1;
+}
+
+#settingsPage .profilePicture img {
+    margin: 10px 0px;
+    width: 100%;
+    border-radius: 50%;
+}
+
+#settingsPage .profilePicture .uploadFileWrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#settingsPage .profilePicture .uploadFileBtn {
+    width: 100%;
+    color: black;
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    background-color: white;
+    padding: 4px 6px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#settingsPage .profilePicture .uploadFileWrapper:hover .uploadFileBtn {
+    background-color: gray;
+}
+
+#settingsPage .profilePicture #fileToUpload {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+
+}
+
+/*  ---------------- */
+
+
+/*------------------------------*/
+/*                              */
+/*      Profile Settings        */
+/*                              */
+/*------------------------------*/
+
+#settingsPage .profileSettings {
+    padding: 10px;
+    margin: 20px 10px;
+    background-color: #555555;
+    border-radius: 5px;
+    box-shadow: 3px 3px #333333;
+    flex-grow: 2;
+}
+
+#settingsPage input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/*  ---------------- */
+
+
+/*------------------------------*/
+/*                              */
+/*      personalSettings        */
+/*                              */
+/*------------------------------*/
+
+#settingsPage .personalSettings {
+    padding: 10px;
+    margin: 20px 10px;
+    background-color: #555555;
+    border-radius: 5px;
+    box-shadow: 3px 3px #333333;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+}
+
+#settingsPage .personalSettings div {
+    width: 95%;
+    justify-self: center;
+}
+
+#settingsPage .personalSettings input[type=text], 
+#settingsPage .personalSettings select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+    background-color: white;
+}

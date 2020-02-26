@@ -1,0 +1,81 @@
+#categories {
+    display: block;
+    margin: 0px 5%;
+}
+
+#categories * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#categories .wrapper {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    display: block;
+    /* background-image: linear-gradient(260deg, #185177 0%, #9e2a2a 100%); */
+    background-color: #262626;
+    padding: 6px;
+    border-radius: 5px;
+    box-shadow: 3px 3px #333333;
+    position: relative;
+    margin-top: 40px;
+}
+
+
+/* #categories .personalSettings {
+    padding: 10px;
+    margin: 20px 10px;
+    background-color: #555555;
+    border-radius: 5px;
+    box-shadow: 3px 3px #333333;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+} */
+
+#categories .personalSettings {
+    min-width: 180px;
+    max-width: 180px;
+}
+
+#categories .personalSettings li:hover {
+    background-color: #333333;
+}
+
+#categories .personalSettings li a.label {
+    color: #000;
+    font-size: 14px;
+    height: 36px;
+    line-height: 20px;
+    padding: 8px 0 8px 36px;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    border-radius: 2px;
+    transition: background-color .15s,padding-right .15s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 8px;
+}
+
+#categories .personalSettings li a i.thumbnail {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background-size: 264px 48px;
+    background-image: url(../../sites/upload/images/index.jpeg);
+    left: 4px;
+    top: 50%;
+    margin-top: -12px;
+}
+
+#categories .personalSettings li a i.thumbnail img {
+    
+display: block;
+width: 100%;
+height: 100%;
+}
+

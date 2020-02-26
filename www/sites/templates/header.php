@@ -65,7 +65,7 @@
                             </button>
                             <div class="dropdown-content">
                             <a href="#">My Page</a>
-                            <a href="#">Settings</a>
+                            <a href="/usersettings">Settings</a>
                             <a href="/api_v1/user?method=logout">Logout</a>
                             </div>
                         </div> 

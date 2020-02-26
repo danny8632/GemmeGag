@@ -54,6 +54,14 @@ if($redirect_exploded[1] != "" && $redirect_exploded[1] == "api_v1")
 
             break;
 
+        case 'categories':
+
+            require __DIR__ . '/api/categories/index.php';
+
+            new Categories();
+
+            break;
+
         
         default:
             echo "Api call dosen't exist";
@@ -152,6 +160,22 @@ else
             require __DIR__ . '/sites/top/index.php';
 
             new Top();
+
+            break;
+
+        case 'usersettings':
+
+            require __DIR__ . '/sites/usersettings/index.php';
+
+            new UserSettings();
+
+            break;
+
+        case 'categories':
+
+            require __DIR__ . '/sites/categories/index.php';
+
+            new Categories();
 
             break;
 

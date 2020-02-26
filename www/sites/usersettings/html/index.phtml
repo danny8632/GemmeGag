@@ -1,0 +1,68 @@
+<div class="content" id="settingsPage">
+    <div class="wrapper">
+
+        <h1>Account settings:</h1>
+        <button class="save">Save</button>
+
+        <div class="profile-wrapper">
+            <div class="profilePicture">
+                <img class="profileImg" src="../../sites/upload/images/index.jpeg">
+                <div class="uploadFileWrapper">
+                    <button class="uploadFileBtn">Upload your file here</button>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                </div>
+            </div>
+    
+            <div class="profileSettings">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="firstname" placeholder="Name" value="<?=$_SESSION['user_name'];?>">
+
+                <label for="username">Username</label>
+                <input type="text" id="username" name="lastname" placeholder="Username" value="<?=$_SESSION['username'];?>">
+
+                <label for="email">Email</label>
+                <input type="text" id="email" name="lastname" placeholder="Email">
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+
+        <h1>Personal settings:</h1>
+        <button class="save">Save</button>
+
+        <div class="personal-wrapper">
+    
+            <div class="personalSettings">
+                    
+                <div>
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="language">Language</label>
+                    <select id="language" name="language">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="timezone">TimeZone</label>
+                    <select id="timezone" name="timezone">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
