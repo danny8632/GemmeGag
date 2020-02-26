@@ -31,7 +31,7 @@ $(document).ready(function () {
        
                            <div class="opCon">
                                <p class="opText">Posted by: <a href="/user?id=${post.userID}">${post.username}</a></p>
-                               <p class="timePosted">${timeSincePost} hour(s) ago</p>
+                               <p class="timePosted">${timeSincePost}</p>
                            </div>
                        </div>
        
