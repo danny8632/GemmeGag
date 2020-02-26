@@ -20,7 +20,18 @@ $( document ).ready(function() {
             cache: false,
             timeout: 600000,
             success: function (data) {
+
+                data = JSON.parse(data);
+
                 console.log("SUCCESS : ", data);
+
+
+
+                data = data.trim();
+
+                console.log(data)
+
+                $('#myModal').find('.modal-content').append(`<a id="postMake" href="/post?id=${data}"><button>go to post</button></a>`)
 
             },
             error: function (e) {
