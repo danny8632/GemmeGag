@@ -5,16 +5,18 @@
     margin-bottom: 4%;
 }
 .newButtonCon, .trendingButtonCon, .topButtonCon {
-    width: 33.33%;
+    width: 30%;
     margin: auto;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 .newButtonCon:hover, .trendingButtonCon:hover, .topButtonCon:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.082);
 }
 .newButton, .trendingButton, .topButton {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 33.33%;
+    padding-right: 33.33%;
     display: block;
     font-family: 'Roboto', sans-serif;
     font-weight: bold;
