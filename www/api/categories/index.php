@@ -57,6 +57,44 @@ class Categories extends Api {
     }
 
 
+    function getPost()
+    {
+        $id;
+        $category;
+
+        $req = $this->getRequest();
+
+        $this->conn = $this->getDbConn();
+
+        if(isset($req[1]) && !empty($req[1]))
+        {
+            $req = $req[1];
+            if(isset($req['id'])) $id = $req['id'];
+            if(isset($req['category_id'])) $id = $req['category_id'];
+            if(isset($req['category'])) $category = $req['category'];
+            if(isset($req['name'])) $category = $req['name'];
+            if(isset($req['category_name'])) $category = $req['category_name'];
+        }
+
+        if(isset($id) && !empty($id))
+        {
+            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created, SUM(postvotes.vote = 'Upvote' AND postvotes.vote IS NOT NULL) AS 'UpVotes', SUM(postvotes.vote = 'Downvote' AND postvotes.vote IS NOT NULL) AS 'DownVotes', SUM(CASE WHEN postvotes.vote IS NOT NULL THEN IF(postvotes.vote = 'Upvote', 1, -1) END) AS `TotalVotes` FROM posts LEFT JOIN postvotes on posts.id = postvotes.postID LEFT JOIN users on posts.userID = users.id WHERE posts.id IN (SELECT postID FROM `postCategoryRelation` WHERE `categoryID` = :id) GROUP BY posts.id, postvotes.postID");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+        }
+        else if(isset($category) && !empty($category))
+        {
+            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, users.name as name, users.username as username, posts.created, SUM(postvotes.vote = 'Upvote' AND postvotes.vote IS NOT NULL) AS 'UpVotes', SUM(postvotes.vote = 'Downvote' AND postvotes.vote IS NOT NULL) AS 'DownVotes', SUM(CASE WHEN postvotes.vote IS NOT NULL THEN IF(postvotes.vote = 'Upvote', 1, -1) END) AS `TotalVotes` FROM posts LEFT JOIN postvotes on posts.id = postvotes.postID LEFT JOIN users on posts.userID = users.id WHERE posts.id IN (SELECT postID FROM `postCategoryRelation` WHERE `categoryID` = (SELECT categories.id FROM categories WHERE category = :category)) GROUP BY posts.id, postvotes.postID");
+            $stmt->bindParam(":category", $category);
+            $stmt->execute();
+        }
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($result);
+
+    }
+
     function _POST()
     {
         $req = $this->getRequest()[1];
