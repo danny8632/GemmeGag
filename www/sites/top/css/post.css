@@ -1,7 +1,3 @@
-.content {
-   margin-left: 5%;
-   margin-right: 5%;
-}
 .wrapper {
    width: 60%;
    margin: auto;
@@ -10,6 +6,7 @@
 /*Post container*/
 .postCon {
    border: solid 10px #262626;
+   margin-bottom: 20px;
 }
 
 /*Title container*/

@@ -41,7 +41,7 @@
     <body>
 
     <div class="topnav" id="navbar">
-        <a class="logo" href="/home">GemmeGag</a>
+        <a class="logo" href="/home"><img src="../../../favicon.ico"></a>
         <div class="nav-btn-wrapper">
             <div class="search">
                 <form>
@@ -55,19 +55,20 @@
 
                 if(isset($_SESSION['user_id']))
                 {
-                    echo '
+                    ?>
                         <a href="/upload">Make Post</a>
                         <div class="dropdown">
                             <button class="dropbtn">
-                                '.$_SESSION['username'].'<i class="fa fa-caret-down"></i>
+                                <?=$_SESSION['username']?><i class="fa fa-caret-down"></i>
                             </button>
                             <div class="dropdown-content">
-                            <a href="#">My Page</a>
+                            <a href="/user?id=<?=$_SESSION['user_id']?>">My Page</a>
                             <a href="/usersettings">Settings</a>
                             <a href="/api_v1/user?method=logout">Logout</a>
                             </div>
                         </div> 
-                    ';
+                    <?php
+                    
                 }
                 else
                 {

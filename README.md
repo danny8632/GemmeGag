@@ -101,6 +101,10 @@ docker-compose build
 docker exec -i db sh -c 'exec mysql -uroot -p"ROOT-Password"' < /path/to/sql/file
 ```
 
+3. To dump your current database use this command:
+```sh
+docker exec -i db sh -c 'exec mysqldump --databases gemmegag -uroot -p"ROOT-Password"' > GemmegagDB.sql
+```
 
 
 

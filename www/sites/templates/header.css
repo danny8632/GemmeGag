@@ -91,6 +91,15 @@ body {
     outline: 0 !important;
 }
 
+#navbar .logo img {
+    width: 100%;
+}
+#navbar .logo {
+    padding: 0;
+    margin-left: 14px;
+    width: 60px;
+}
+
 #navbar .dropdown .dropbtn:hover {
     cursor: pointer;
     background-color: rgba(255, 255, 255, 0.082);
