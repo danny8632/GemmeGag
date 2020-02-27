@@ -124,4 +124,28 @@ class User extends Api {
         ));
         header("Location: ./../");
     }
+
+    function getUserInfo()
+    {
+        $req = $this->getRequest();
+
+        $user_id;
+
+        if(isset($req[1]) && !empty($req[1]))
+        {
+            $req = $req[1];
+
+            if(isset($req['user_id'])) $user_id = $req['user_id'];
+        }
+
+
+        $this->conn = $this->getDbConn();
+        $stmt = $this->conn->prepare("SELECT `users`.`id`, `users`.`username`, `users`.`created` FROM `users` WHERE `users`.`id` = :id");
+        $stmt->bindParam(':id', $user_id);
+        $stmt->execute();
+        
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($result);
+    }
 }
