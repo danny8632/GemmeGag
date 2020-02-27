@@ -6,7 +6,8 @@ class Top Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "/sites/top/css/post.css"
+            "/sites/top/css/post.css",
+            "/sites/top/css/navbar.css"
         ),
         "js" => array(
             "/sites/top/js/top.js"
