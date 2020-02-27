@@ -14,6 +14,31 @@ class Vote extends Api {
 
     }
 
+    function _GET()
+    {
+        $user_id;
+
+        $post_id;
+
+        if(isset($req[1]) && !empty($req[1]))
+        {
+            $req = $req[1];
+
+            if(isset($req['id'])) $post_id = $req['id'];
+            if(isset($req['post_id'])) $post_id = $req['post_id'];
+            if(isset($req['user_id'])) $user_id = $req['user_id'];
+        }
+        if (isset($user_id) && !empty($user_id)) {
+            $stmt = $this->conn->prepare("SELECT posts.id, posts.title, posts.description, posts.file, posts.userID, posts.created, postvotes.vote FROM posts LEFT JOIN postvotes ON posts.id = postvotes.postID LEFT JOIN users ON postvotes.userID = users.id WHERE posts.userID = :id GROUP BY posts.id, postvotes.postID");
+            $stmt->bindParam(":id", $user_id);
+            $stmt->execute();
+        }
+
+        $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+        echo json_encode($result);
+    }
+
     function _POST()
     {
         $id;

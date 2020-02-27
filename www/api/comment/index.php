@@ -60,7 +60,7 @@ class Comment extends Api {
         }
         else if(!empty($user_id))
         {
-            $stmt = $this->conn->prepare("SELECT `comments`.*, `users`.`username`, `users`.`name`, `users`.`id` AS 'user_id', SUM(commentvotes.vote = 'Upvote' AND commentvotes.vote IS NOT NULL) AS 'UpVotes', SUM(commentvotes.vote = 'Downvote' AND commentvotes.vote IS NOT NULL) AS 'DownVotes' FROM `comments` INNER JOIN `users` ON `comments`.`userID` = `users`.`id` LEFT JOIN commentvotes on comments.id = commentvotes.commentID WHERE `userID` = :id GROUP BY comments.id, commentvotes.commentID ORDER BY comments.created DESC");
+            $stmt = $this->conn->prepare("SELECT `comments`.*, `posts`.`title` AS 'post_title' FROM `comments` LEFT JOIN `posts` ON `comments`.`postID` = `posts`.`id` WHERE `comments`.`userID` = :id");
             $stmt->bindParam(":id", $user_id);
             $stmt->execute();
         }

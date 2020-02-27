@@ -22,30 +22,32 @@ $(document).ready(function () {
    function getComments() {
       $.ajax({
          type: "GET",
-         url: "/api_v1/comment",
+         url: "/api_v1/comment?user_id=" + global_var.extra_var.id,
          timeout: 600000,
          success: function (data) {
             console.log(data)
             var response = JSON.parse(data)
             console.log(response)
 
-            response.forEach(comment => {
-               var timeSincePost = getTimeSince(comment.created);
-               comment_html = `
-                   <div class="comment">
+            response.forEach(result => {
+               var timeSincePost = getTimeSince(result.created);
+               html = `
+                   <div class="postCon">
+                     <div class="titleCon">
+                     <div class="titleTextCon">
+                        <a class="titleText" href="/post?id=${result.postID}"> ${result.title} </p>
+                     </div>
+
+                      <div class="opCon">
+                        <p class="opText">Posted: ${timeSincePost}</a></p>
+                      </div>
+                   </div>
                        <div class="commentHead">
-                           <a class="commentHeadText" href="#">${comment.username}</a>
+                           <a class="commentHeadText" href="#">${result.username}</a>
                            <div class="commentTimePosted">${timeSincePost}</div>
                        </div>
                        <div class="commentBody">
-                           <p class="commentText">${comment.text}</p>
-                       </div>
-                       <div class="commentFoot">
-                           <div class="commentVotes">
-                               <div class="upvote votebtn ${(comment.your_vote != null && comment.your_vote == "Upvote") ? "upduttet" : ''}" data-comment_id="${comment.id}" data-vote="Upvote">▲</div>
-                               <div class="commentTotalVotes">${comment.TotalVotes == null ? '0' : comment.TotalVotes}</div>
-                               <div class="downvote votebtn ${(comment.your_vote != null && comment.your_vote == "Downvote") ? "downduttet" : ''}" data-comment_id="${comment.id}" data-vote="Downvote">▼</div>
-                           </div>
+                           <p class="commentText">${result.text}</p>
                        </div>
                    </div>`
                $(".content").find('#commented').append(html);
@@ -68,7 +70,7 @@ $(document).ready(function () {
    function getPosts() {
       $.ajax({
          type: "GET",
-         url: "/api_v1/post",
+         url: "/api_v1/post?user_id=" + global_var.extra_var.id,
          timeout: 600000,
          success: function (data) {
             console.log(data)
