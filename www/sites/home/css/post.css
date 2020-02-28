@@ -162,3 +162,14 @@
 .downduttet {
     color: #ff3300;
 }
+
+.headlineTxt {
+    color: #e6e6e6;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 25;
+    width: -moz-fit-content;
+    width: fit-content;
+    margin: auto;
+}
