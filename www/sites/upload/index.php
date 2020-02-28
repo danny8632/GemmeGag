@@ -6,7 +6,8 @@ class Upload Extends Sites {
 
     public $includeFiles = array(
         "css" => array(
-            "/sites/upload/css/main.css"
+            "/sites/upload/css/main.css",
+            "/sites/upload/css/form.css"
         ),
         "js" => array(
             "/sites/upload/js/main.js"
